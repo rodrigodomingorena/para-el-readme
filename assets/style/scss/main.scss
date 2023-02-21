@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+
+@use 'base';
+
+@use 'components/header';
+
+@use 'components/loader';
+
+@use 'views/index';
+@use 'views/menu';
+@use 'views/plate';
+@use 'views/contact';
+
+@use 'components/footer';

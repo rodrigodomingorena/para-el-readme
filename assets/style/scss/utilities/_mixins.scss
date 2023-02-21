@@ -1,0 +1,851 @@
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+@use "maps" as mp;
+@use "variables" as v;
+
+
+
+
+//===================================================================
+//  Font Stack
+//===================================================================
+
+
+//  Creado para mantener agrupadas todas las propiedades relacionadas al texto
+//  y así mantener cierta unidad y orden a lo largo del proyecto en cuanto
+//  a estas características.
+
+@mixin font-stack(
+  $t-a: null,
+  $t-d: null,
+  $t-s: null,
+  $t-o: null,
+  $l-h: null,
+  $l-e: null,
+  $c: null,
+  $f-s: null,
+  $f-w: null,
+  $w-b: null,
+  $w-s: null,
+  ) {
+
+  @if $t-a {text-align: $t-a;}
+  @if $t-d {text-decoration: $t-d;}
+  @if $t-s {text-shadow: $t-s;}
+  @if $t-o {text-overflow: $t-o;}
+  @if $l-h {line-height: $l-h;}
+  @if $l-e {letter-spacing: $l-e;}
+  @if $c {color: $c;}
+  @if $f-s {font-size: $f-s;}
+  @if $f-w {font-weight: map.get(mp.$font-weight, $f-w);}
+  @if $w-b {word-break: $w-b;}
+  @if $w-s {white-space: $w-s;}
+}
+
+
+//===================================================================
+//  Cierre de Font Stack
+//===================================================================
+
+
+
+
+//===================================================================
+//  Responsive
+//===================================================================
+
+
+//  Creado para declarar las distintas 'media queries' a lo largo del proyecto.
+
+
+@mixin responsive($size) {
+
+  @if map.has-key(mp.$breakpoints, $size) {//  1*
+    @media #{meta.inspect(map.get(mp.$breakpoints, $size))} {//  2*
+      @content;
+    }
+  }
+
+  @else if meta.type-of($size) == number {//  3*
+    
+    @if math.is-unitless($size) {//  4*
+      $size: $size * 1px;
+
+      @media (min-width: #{$size}) {
+        @content;
+      }
+    }
+
+    @else {//  5*
+      @media (min-width: #{$size}) {
+        @content;
+      }
+    }
+  }
+
+  @else {//  6*
+    @warn "Desafortunadamente no existe ningún valor para '#{$size}'."
+    "Asegúrese de que esté definido en el mapa '$breakpoints'."
+    "O bien que sea un número válido.";
+  }
+}
+
+
+//  Explicación:
+
+//  1*  Si el mapa '$breakpoints' contiene el '$size' suministrado.
+//  2*  Devuelve el valor que tiene asociado el $size en el mapa $breakpoints
+//      después de una declaración '@media'.
+//  3*  Si no, se corrobora que el '$size' sea un número.
+//  4*  Si es un número, en caso de que no tenga unidades, se lo convierte a
+//      'px' y se imprime la declaración '@media' que sigue.
+//  5*  Si es un número con unidades, directamente se imprime la declaración
+//      '@media' que sigue.
+//  6*  Si el mapa '$breakpoints' no contiene el $size suministrado y tampoco
+//      este es un número, devolvemos el siguiente '@warn' para alertar sobre
+//      el problema en cuestión.
+
+
+//  Ejemplo.
+
+//  .element {
+//    @include responsive('md') {
+//      position: sticky;
+//      top: -4.3rem;
+//    }
+//  }
+
+
+//  Código resultante:
+
+//  @media (min-width: 768px) {
+//    .element {
+//      position: sticky;
+//      top: -4.3rem;
+//    }
+//  }
+
+
+//===================================================================
+//  Cierre de Responsive
+//===================================================================
+
+
+
+
+//===================================================================
+//  Color Hover
+//===================================================================
+
+
+//  Mixin que genera un 'background-color' en ':hover' dependiendo de si la clase
+//  del elemento en cuestión se encuentra dentro de un 'header--brown' o 'header--blue'.
+
+
+@mixin color-hover($color: v.$white, $map...) {
+
+  @each $color-header, $background in meta.keywords($map) {
+    .header--#{$color-header} &:hover {
+      background-color: $background;
+      @if $color {@include font-stack($c: $color);}
+    }
+  }
+}
+
+
+//  Ejemplo.
+
+//  Mapa suministrado:
+
+//  $header-color: (
+//    'brown': v.$brown,
+//    'blue': v.$light-blue,
+//  );
+
+//  .element {
+//    @include color-hover(mp.$header-color...);
+//  }
+
+//  Código resultante:
+
+//  header--brown .element:hover {
+//    background-color: rgba(113, 83, 67, 1);
+//    color: #fff;
+//  }
+
+//  header--blue .element:hover {
+//    background-color: rgba(15, 159, 214, 1);
+//    color: #fff;
+//  }
+
+
+//===================================================================
+//  Cierre de Color Hover
+//===================================================================
+
+
+
+
+//===================================================================
+//  Color Nav
+//===================================================================
+
+
+//  Mixin que genera un 'background-color' dependiendo de si la clase del elemento
+//  en cuestión ('header__navbar') se encuentra dentro de un 'header--brown' o
+//  'header--blue'.
+
+@mixin color-nav($map...) {
+  @each $color-header, $background in meta.keywords($map) {
+    .header--#{$color-header} & {
+      background-color: $background;
+    }
+  }
+}
+
+
+//  Ejemplo.
+
+//  Mapa suministrado:
+
+//  $header-color-05: (
+//    'brown': v.$brown-05,
+//    'blue': v.$light-blue-05,
+//  );
+
+//  .header__navbar {
+//    @include color-nav(mp.$header-color-05...);
+//  }
+
+//  Código resultante:
+
+//  header--brown .header__navbar {
+//    background-color: rgba(113, 83, 67, 0.5);
+//  }
+
+//  header--blue .header__navbar {
+//    background-color: rgba(15, 159, 214, 0.5);
+//  }
+
+
+//===================================================================
+//  Cierre de Color Nav
+//===================================================================
+
+
+
+
+//===================================================================
+//  Size
+//===================================================================
+
+
+//  Creado para mantener agrupadas todas las propiedades relacionadas al 'width'
+//  y 'height' para así mantener cierta unidad y orden a lo largo del proyecto en
+//  cuanto a estas características.
+
+@mixin size(
+  $w: null,
+  $h: null,
+  $wmin: null,
+  $wmax: null,
+  $hmin: null,
+  $hmax: null,
+  ) {
+  
+  @if $w {width: $w;}
+  @if $wmin {min-width: $wmin;}
+  @if $wmax {max-width: $wmax;}
+  @if $h {height: $h;}
+  @if $hmin {min-height: $hmin;}
+  @if $hmax {max-height: $hmax;}
+}
+
+
+//===================================================================
+//  Cierre de Size
+//===================================================================
+
+
+
+
+//===================================================================
+//  Transition
+//===================================================================
+
+
+//  Mixin creado para agilizar la declaración de la propiedad 'transition'
+//  con un valor por defecto (uno de los más utilizados) y con la posibilidad
+//  de ser personalizado en los casos que sean necesarios.
+
+@mixin transition(
+  $props: all,
+  $duration: 0.75s,
+  $timing: ease-out,
+  $delay: 0s,
+) {
+  
+  transition-property: $props;
+  transition-duration: $duration;
+  transition-timing-function: $timing;
+  transition-delay: $delay;
+}
+
+//===================================================================
+//  Cierre de Transition
+//===================================================================
+
+
+
+
+//===================================================================
+//  Hero Index Background
+//===================================================================
+
+
+//  Creado para declarar los 'background' del 'hero-index' del documento 'index'
+
+@mixin hero-index-background {
+
+  @each $breakpoint, $size in (null 22%, 'sm' 22%, 'md' 33%, 'lg' 33%) {//  1*
+
+    $url: if($breakpoint,
+      '../../media/index/#{$breakpoint}/hero-image.png',
+      '../../media/index/hero-image.png'
+    );
+    $size: closest-side at 50% #{$size};
+
+    @if $breakpoint {//  2*
+      @include responsive($breakpoint) {//  3*
+        background: url($url) no-repeat center top,
+        transparent radial-gradient(#{$size}, v.$white 0%, v.$light-brown 100%)
+        0% 0% no-repeat padding-box;
+      }
+    } 
+    
+    @else {//  4*
+      background-color: v.$light-brown;
+      background: url($url) no-repeat center top,
+      transparent radial-gradient(#{$size}, v.$white 0%, v.$light-brown 100%)
+      0% 0% no-repeat padding-box;
+    }
+  }
+}
+
+
+//  Explicación:
+
+//  1*  Genero un bucle y declaro los valores de los '$breakpoint' y 'size' a utilizar.
+//  2*  En este caso, si el '$breakpoint' es distinto de 'null'.
+//  3*  Llamamos al mixin 'responsive' pasándole el '$breakpoint' correspondiente
+//      a la iteración del bucle.
+//  4*  En este caso, si el '$breakpoint' es igual a 'null' devolvemos las
+//      declaraciones que siguen.
+
+
+//  Ejemplo.
+
+//  .hero-index {
+//    @include mx.hero-index-background;
+//  }
+
+//  Código resultante (solo se muestra un '$breakpoint' del bucle):
+
+//  @media (min-width: 576px) {
+//    .hero-index {
+//      background:
+//                url('../../media/index/sm/hero-image.png') no-repeat center top,
+//                transparent radial-gradient(closest-side at 50% 22%, #fff 0%, rgba(247, 231, 148, 1) 100%) 
+//                0% 0% no-repeat padding-box;
+//    }
+//  }
+
+
+//===================================================================
+//  Hero Index Background
+//===================================================================
+
+
+
+
+//===================================================================
+//  Bg Articles
+//===================================================================
+
+//  Creado para declarar los 'background' de los tres '.main-index__article'
+//  del documento 'index'.
+
+@mixin bg-main-index-article($breakpoint: null) {
+
+  @each $nth, $bg, $gradient in (//  1*
+
+    1 v.$light-blue v.$blue-gradient,
+    2 v.$orange v.$orange-gradient,
+    3 v.$light-brown v.$white
+    
+  ) {
+
+    @if $breakpoint != 'lg' {//  2*
+
+      $url: if($breakpoint,
+        '../../media/index/#{$breakpoint}/bg-#{$nth}.png',
+        '../../media/index/bg-#{$nth}.png'
+      );
+      $size: closest-side at 50% 50%;
+      $bg-gradient: #{$gradient} 0%, #{$bg} 100%;
+      $radial-gradient: $size, $bg-gradient;
+      $background: url($url) no-repeat center,
+        transparent radial-gradient($radial-gradient) 0% 0% no-repeat padding-box;
+
+      &:nth-child(#{$nth}) {//  3*
+        @if not $breakpoint {
+          background-color: $bg;//  4*
+        }
+        background: $background;
+      }
+    }
+
+    @else {//  5*
+
+      $url: '../../media/index/#{$breakpoint}/bg-#{$nth}.png';
+      $size: if($nth % 2 == 0, closest-side at 67% 50%, closest-side at 33% 50%);//  6*
+      $bg-gradient: #{$gradient} 0%, #{$bg} 100%;
+      $radial-gradient: $size, $bg-gradient;
+      $background: radial-gradient($radial-gradient);
+
+      &:nth-child(#{$nth}) {
+        background: $background;
+      }
+    }
+  }
+}
+
+
+
+//  Explicación:
+
+//  1*  Genero un bucle y declaro los valores asociados a las tres variaciones
+//      del 'main-index__article'.
+//  2*  Si el '$breakpoint' suministrado es distinto de 'lg' genero el bucle con
+//      los valores que siguen.
+//  3*  Una vez establecidas las propiedades necesarias para declarar las reglas de 
+//      estilo, establezco los selectores que darán a cada '.main-index__article' sus
+//      valores según sean sus ubicaciones ('$nth') en el documento.
+//  4*  Si no se declara un '$breakpoint' devolverá la propiedad 'background-color'
+//      ya que esta se suministra una sola vez en las pantallas más pequeñas.
+//  5*  Si el '$breakpoint' suministrado es igual a 'lg', genero el bucle con los
+//      valores que siguen.
+//  6*  Los '.main-index__article:nth-child(VALORES-PARES)' necesitan un '$size' distinto 
+//      a los que están ubicados en VALORES-IMPARES.
+
+
+//  Ejemplo.
+
+//  .main-index__article {
+//    @include bg-main-index-article('md');
+//  }
+
+
+//  Código resultante:
+
+//  .main-index__article:nth-child(1) {
+//    background: url('../media/index/md/bg-1.png') no-repeat center,
+//                transparent radial-gradient(closest-side at 50% 50%, rgba(82, 201, 221, 1) 0%, rgba(15, 159, 214, 1) 100%) 0% 0% no-repeat padding-box;
+//   }
+
+//  .main-index__article:nth-child(2) {
+//    background: url('../media/index/md/bg-2.png') no-repeat center,
+//                transparent radial-gradient(closest-side at 50% 50%, rgba(255, 160, 123, 1) 0%, rgba(237, 125, 59, 1) 100%) 0% 0% no-repeat padding-box;
+//   }
+
+//  .main-index__article:nth-child(3) {
+//    background: url('../media/index/md/bg-3.png') no-repeat center,
+//                transparent radial-gradient(closest-side at 50% 50%, #fff 0%, rgba(247, 231, 148, 1) 100%) 0% 0% no-repeat padding-box;
+//   }
+
+
+//===================================================================
+//  Cierre de Bg Articles
+//===================================================================
+
+
+
+
+//===================================================================
+//  Main Index Title Color
+//===================================================================
+
+
+//  Mixin creado para declarar la propiedad 'color' de forma personalizada
+//  por cada 'main-index__title' existente en el documento 'index'.
+
+@mixin main-index-title-color {
+  @each $nth, $color in ( 
+    1 v.$blaze-orange,
+    2 v.$dodger-blue, 
+    3 v.$light-blue
+  ) {
+    .main-index__article:nth-child(#{$nth}) & {
+      @include font-stack($c: $color);//  color
+    }
+  }
+}
+
+
+//===================================================================
+//  Cierre de Main Index Title Color
+//===================================================================
+
+
+
+
+//===================================================================
+//  Footer Item Layout
+//===================================================================
+
+
+//  Mixin creado para declarar las propiedades 'flex', 'max-width', 'margin-left'
+//  y 'text-align' en forma de bucle para cada elemento 'footer__item'.
+//  Esto permite la correcta ubicación de estos dentro de su contenedor padre.
+
+@mixin footer-item-layout {
+
+  @each $nth, $basis, $margin, $align in (
+    1 30% null null,
+    2 20% 10% center,
+    3 20% 20% right
+  ) {
+
+    &:nth-child(#{$nth}) {
+      @include size($wmax: $basis); //  max-width
+      flex: 0 0 $basis;
+
+      @if $align {
+        @include font-stack($align);//  text-align
+      }
+
+      @if $margin {
+        margin-left: $margin;
+      }
+    }
+  }
+}
+
+
+//  Ejemplo.
+
+//  .footer__item {
+//    @include footer-item-layout;
+//  }
+
+//  Código resultante:
+
+//  .footer__item:nth-child(1) {
+//    max-width: 30%;
+//    flex: 0 0 30%;
+//  }
+
+//  .footer__item:nth-child(2) {
+//    max-width: 20%;
+//    flex: 0 0 20%;
+//    text-align: center;
+//    margin-left: 10%;
+//  }
+
+//  .footer__item:nth-child(3) {
+//    max-width: 20%;
+//    flex: 0 0 20%;
+//    text-align: right;
+//    margin-left: 20%;
+//  }
+
+
+//===================================================================
+//  Cierre de Footer Item Layout
+//===================================================================
+
+
+
+
+//===================================================================
+//  Bg Menu
+//===================================================================
+
+//  Mixin que genera los 'background-image' del documento 'menu',
+//  dependiendo de los distintos breakpoints y pantallas de visualización.
+
+@mixin bg-menu {
+
+  @each $breakpoint in (null, 'sm', 'md', 'lg', 'xl', 'xxl') {//  1*
+    
+    @if $breakpoint {//  2*
+      
+      $url: '../../media/menu/#{$breakpoint}/hero-image.png';
+      $value-breakpoint: map.get(mp.$breakpoints, $breakpoint, 'min-width');//  3*
+      $position: if($value-breakpoint < 992px,
+        center top,
+        right top
+      );
+
+      @include responsive($breakpoint) {//  4*
+        background: url($url) no-repeat $position,
+                    radial-gradient(closest-side at 50% 50%, v.$white 0%, v.$light-brown 100%);
+      }
+    } 
+
+    @else {//  7*
+
+      background-color: v.$light-brown;
+      background: url('../../media/menu/hero-image.png') no-repeat center top,
+                  radial-gradient(closest-side at 50% 50%, v.$white 0%, v.$light-brown 100%);
+    }
+  }
+}
+
+
+//  Explicación:
+
+//  1*  Genero un bucle y declaro los valores de los '$breakpoint' a utilizar.
+//  2*  En este caso, si el '$breakpoint' es distinto de 'null'.
+//  3*  Obtenemos el valor perteneciente al 'min-width' a través de una búsqueda
+//      'profunda' buscando más allá del primer valor 
+//      (ej. "'sm': (min-width: 576px)" solo devuelve '576px').
+//  4*  Llamamos al mixin 'responsive' pasándole el '$breakpoint' correspondiente
+//      a la iteración del bucle.
+//  7*  En este caso, si el '$breakpoint' es igual a 'null' devolvemos las
+//      declaraciones que siguen.
+
+
+//  Ejemplo.
+
+//  .bg-menu {
+//    @include bg-menu;
+//  }
+
+
+//  Código resultante (solo se muestra un '$breakpoint' del bucle):
+
+//  @media (min-width: 576px) {
+//    .bg-menu {
+//      background: url('../../media/menu/sm/hero-image.png') no-repeat center top,
+//                  radial-gradient(closest-side at 50% 50%, #fff 0%, rgba(247, 231, 148, 1) 100%);
+//    }
+//  }
+
+
+//===================================================================
+//  Cierre de Bg Menu
+//===================================================================
+
+
+
+
+//===================================================================
+//  Cards
+//===================================================================
+
+//  Mixin que genera los estilos base de las 'cards' utilizadas en varias
+//  secciones del sitio.
+
+@mixin cards {
+  @include transition(background-color);
+  display: flex;
+  flex: {
+    direction: column;
+    wrap: wrap;
+  }
+  align-items: center;
+  background-color: v.$orange-02;
+  
+  &:hover {
+    background-color: v.$orange-05;
+  }
+}
+
+//===================================================================
+//  Cierre de Cards
+//===================================================================
+
+
+
+
+//===================================================================
+//  Thumb
+//===================================================================
+
+//  Mixin que genera los estilos personalizados del 'thumb' del Shadow DOM
+//  perteneciente a los 'inputs' de tipo 'range'.
+
+@mixin thumb {
+  @include transition;
+  @include size(
+    $w: v.$thumb-size,//  width
+    $h: v.$thumb-size//  height
+  );
+  appearance: none;//  Elimina los estilos predeterminados del navegador.
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: v.$orange;
+  border: none {
+    radius: 0;
+  }
+  margin-top: calc(v.$range-height * 0.5 - v.$thumb-size * 0.5);
+  pointer-events: all;
+  box-shadow: 0.0555em 0.0555em 0.44444em #00000060;
+
+  &:hover {
+    background-color: v.$orange-thumb-hover;
+    cursor: grab;
+  }
+
+  &:active {
+    background-color: v.$orange;
+    cursor: grabbing;
+  }
+}
+
+//===================================================================
+//  Cierre de Thumb
+//===================================================================
+
+
+
+
+//===================================================================
+//  Size Plate
+//===================================================================
+
+//  Creado para definir en varios elementos del documeto 'plate' un 
+//  'min-width' y 'max-width' debido a que es una medida recurrente en
+//  varios de ellos.
+
+@mixin size-plate ($wmin: 26rem, $wmax: 31.5rem){
+  min-width: $wmin;
+  max-width: $wmax;
+}
+
+//===================================================================
+//  Cierre de Size Plate
+//===================================================================
+
+
+
+
+//===================================================================
+//  Bg Error
+//===================================================================
+
+//  Mixin que genera los 'background-image' de los contenedores de error cuando se ha
+//  producido un error relacionado a la solicitud de platos al servidor, dependiendo
+//  de los distintos breakpoints y pantallas de visualización.
+
+@mixin bg-error ($folder: "") {
+
+  @each $breakpoint in (null, 'sm', 'md') {//  1*
+    @if $breakpoint {//  2*
+      @include responsive($breakpoint) {//  3*
+        & {
+          background-image: url('../../media/error/#{$folder}#{$breakpoint}/error.png');//  4*
+        }
+      }
+    } @else {//  5*
+      & {
+        background-image: url('../../media/error/#{$folder}error.png');
+      }
+    }
+  }
+}
+
+
+//  Explicación:
+
+//  1*  Genero un bucle y declaro los valores de los '$breakpoint' a utilizar.
+//  2*  En este caso, si el '$breakpoint' es distinto de 'null'.
+//  3*  Llamamos al mixin 'responsive' pasándole el '$breakpoint' correspondiente
+//      a la iteración del bucle.
+//  4*  Declaramos el 'brackground-image' correspondiente al '$breakpoint' actual
+//  5*  En este caso, si el '$breakpoint' es igual a 'null' devolvemos las
+//      declaraciones que siguen.
+
+
+//  Ejemplo.
+
+//  .card__container--error{
+//    @include bg-error;
+//  }
+
+
+//  Código resultante (solo se muestra un '$breakpoint' del bucle):
+
+//  @media (min-width: 576px) {
+//    .card__container--error {
+//      background-image: url('../../media/menu/sm/error.png');
+//    }
+//  }
+
+
+//===================================================================
+//  Cierre de Bg Error
+//===================================================================
+
+
+
+
+//===================================================================
+//  Bg Nutritional Info
+//===================================================================
+
+//  Mixin que genera los 'background-image' de los '.nutritional-info__main'.
+//  Las propiedades personalizadas '--background-url-*' son asignadas dinámicamente
+//  mediante JavaScript dependiendo del plato que tenga que ser renderizado.
+
+@mixin bg-nutritional-info {
+
+  @each $breakpoint in (null, 'sm', 'md', 'lg') {//  1*
+    @if $breakpoint {//  2*
+      @include responsive($breakpoint) {//  3*
+        & {
+          background-image: var(--background-url-#{$breakpoint});//  4*
+        }
+      }
+    } @else {//  5*
+      & {
+        background-image: var(--background-url);
+      }
+    }
+  }
+  
+}
+
+//  Explicación:
+
+//  1*  Genero un bucle y declaro los valores de los '$breakpoint' a utilizar.
+//  2*  En este caso, si el '$breakpoint' es distinto de 'null'.
+//  3*  Llamamos al mixin 'responsive' pasándole el '$breakpoint' correspondiente
+//      a la iteración del bucle.
+//  4*  Declaramos el 'brackground-image' correspondiente al '$breakpoint' actual
+//      invocando a la propiedad personalizada declarada mediante JavaScript.
+//  5*  En este caso, si el '$breakpoint' es igual a 'null' devolvemos las
+//      declaraciones que siguen.
+
+
+//  Ejemplo.
+
+//  .nutritional-info__main {
+//    @include bg-nutritional-info;
+//  }
+
+
+//  Código resultante (solo se muestra un '$breakpoint' del bucle):
+
+//  @media (min-width: 576px) {
+//    .nutritional-info__main {
+//      background-image: var(--background-url-sm);
+//    }
+//  }
+
+
+//===================================================================
+//  Cierre de Bg Nutritional Info
+//===================================================================
