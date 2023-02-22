@@ -17,7 +17,15 @@ A continuación voy a detallar algunas partes de este proyecto para que al momen
 
 ## Refactorización de componentes
 
-Como mencioné en la introducción, me encontré en la afortunada situación de tener un primer proyecto como base lo suficientemente grande que me daría la oportunidad de jugar con él para poder aplicar múltiples funcionalidades a través de JavaScript. Sin emb
+Como mencioné en la introducción, me encontré en la afortunada situación de tener un primer proyecto como base lo suficientemente grande que me daría la oportunidad de jugar con él para poder aplicar múltiples funcionalidades a través de JavaScript. Sin embargo, esto no significa que tomé el código estructural del primer proyecto y simplemente le agregué unos cuantos archivos «.js» para dotarlo de dinamismo. No.
+
+Este proceso comenzó con el intento de refactorizar cada parte de aquella estructura propensa a ser mejorada. Esto lo realicé atendiendo a diferentes criterios que tuve la oportunidad de afianzar y comprender con mayor profundidad luego de un año más de estudio. Considero que en el primer proyecto estos criterios fueron, o bien logrados a medias o directamente desatendidos por mi falta de experiencia y práctica.
+
+Alguno de los criterios principales a tener en cuenta en este nuevo proyecto fueron los relacionados a la escalabilidad, lograr una estructura más atomizada e independiente entre cada una de sus partes, ajustar la arquitectura de directorios de Sass a estas nuevas estructuras, corregir ciertas denominaciones de clases basadas en [BEM][bem] para conseguir manipular de forma más óptima el DOM, lograr un código HTML lo más limpio posible de clases innecesarias que dificulten su lectura y entendimiento, etc.
+
+Obviamente, estos casos se dan en mayor o menor medida a lo largo de todo el proyecto, desde componentes extremadamente grandes y complejos heredados del primero y posteriormente atomizados e independizados de una forma más óptima en este, hasta otros que casi no necesitaron modificación alguna debido a que su estructura ya se encontraba lo suficientemente optimizada para ser utilizada. Si conocés el proyecto «[Mi primer sitio][mi-primer-sitio]», seguramente al explorar los archivos HTML y CSS/Sass de este nuevo proyecto reconocerás más fácilmente estos cambios y mejoras enumeradas.
+
+A modo de ejemplo, a continuación menciono un caso de refactorización que considero abarca gran parte de estos criterios tenidos en cuenta.
 
 
 
@@ -43,9 +51,10 @@ Como mencioné en la introducción, me encontré en la afortunada situación de 
 
 
 
-
+[index]: ./index.html
 [index-page]: https://rodrigodomingorena.github.io/mi-primer-sitio-con-js/
 [mi-primer-sitio]: https://github.com/rodrigodomingorena/mi-primer-sitio
 [js-info]: https://es.javascript.info/
 [mdn]: https://developer.mozilla.org/en-US/
 [react]: https://beta.reactjs.org/
+[bem]: https://github.com/rodrigodomingorena/mi-primer-sitio#metodolog%C3%ADa-bem
