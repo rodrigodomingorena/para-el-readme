@@ -12,6 +12,13 @@ Ahora bien, ¿por qué un sitio web desarrollado con Vanilla JavaScript y no con
 
 A continuación voy a detallar algunas partes de este proyecto para que al momento de explorar el repositorio puedas tener un acercamiento más ameno a sus contenidos.
 
+## Índice de contenidos
++ [Refactorización de componentes](#refactorización-de-componentes)
+
+## Refactorización de componentes
+
+Como mencioné en la introducción, me encontré en la afortunada situación de tener un primer proyecto como base lo suficientemente grande que me daría la oportunidad de jugar con él para poder aplicar múltiples funcionalidades a través de JavaScript. Sin emb
+
 
 
 
