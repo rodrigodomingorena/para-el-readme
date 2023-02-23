@@ -35,7 +35,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
   
   Naturalmente, esta refactorización implicó un aumento de la complejidad del subcomponente [Main][nutritional-info-main] del [Nutritional Info][nutritional-info] aunque se logró mantener su independencia, además de que se prevé un crecimiento futuro del proyecto pudiéndose agregar cuantas unidades hagan falta, como se puede visualizar en los siguientes ejemplos.
   
-  > En la imagen se grafican las secciones principales presentes en el sitio y el flujo de navegación que se brinda para que el usuario pueda llegar a visualizar sus platos favoritos.
+  > Animación que muestra el nuevo subcomponente Main del Nutritional Info con las nuevas opciones disponibles para el usuario.
 
   ![Opciones de unidad y cantidad disponibles para el usuario](./assets/media/readme/refactor/gif/nutritional-info-main-options.gif "Opciones de unidad y cantidad disponibles para el usuario")
 
