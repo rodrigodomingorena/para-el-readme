@@ -268,6 +268,10 @@ export class Amount {
       case "plates":
         unit = amountValue === "1" ? "plato" : "platos";
         break;
+          
+      default:
+        unit = "º";
+        break;
     }
 
     return amountValue + this.INDEX.separator + unit;
