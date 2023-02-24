@@ -25,23 +25,29 @@ Alguno de los criterios principales a tener en cuenta en este nuevo proyecto fue
 
 Obviamente, estos casos se dan en mayor o menor medida a lo largo de todo el proyecto, desde componentes extremadamente grandes y complejos heredados del primero y posteriormente atomizados e independizados de una forma más óptima en este, hasta otros que casi no necesitaron modificación alguna debido a que su estructura ya se encontraba lo suficientemente optimizada para ser utilizada. Si conocés el proyecto «[Mi primer sitio][mi-primer-sitio-repo]», seguramente al explorar los archivos HTML y CSS/Sass de este nuevo proyecto reconocerás más fácilmente estos cambios y mejoras enumeradas.
 
-A modo de ejemplo, a continuación menciono un caso de refactorización que necesitó abarcar criterios tales como la escalabilidad, la previsibilidad de datos entrantes de gran longitud, adición de nuevas funcionalidades, mejores denominaciones de clases para su manejo tanto en CSS como en JavaScript, entre otros.
+A modo de ejemplo, a continuación menciono un caso de refactorización que necesitó abarcar criterios tales como la escalabilidad, la previsibilidad de entrada de datos de gran longitud, adición de nuevas funcionalidades, mejores denominaciones de clases para su manejo tanto en CSS como en JavaScript, entre otros.
 
 ### [Nutritional Info][nutritional-info]
 
-+ #### Adición de opciones de peso y cantidad personalizadas
++ #### Adición de opciones de cantidad y unidades de peso personalizadas
 
   En el primer proyecto, el usuario solamente contaba con una información nutricional estática [cada 300 gramos de alimento][nutritional-info-static-grams]. En este nuevo desarrollo se le da la posibilidad de introducir una cantidad numérica personalizada además de poder elegir qué tipo de unidad de peso representa dicha cantidad. En esta instancia se contemplan tres tipos de unidades: gramos, kilogramos y platos (donde cada plato equivale a 300 gramos).
   
-  Naturalmente, esta refactorización implicó un aumento de la complejidad del subcomponente [Main][nutritional-info-main] del [Nutritional Info][nutritional-info]. Aun así se logró mantener su independencia, además de que se prevé un crecimiento futuro del proyecto pudiéndose agregar cuantas unidades hagan falta, como se puede visualizar en los siguientes ejemplos.
+  Naturalmente, esta refactorización implicó un aumento de la complejidad del subcomponente [Main][nutritional-info-main] del [Nutritional Info][nutritional-info]. Aun así, se logró mantener su independencia, además de que se prevé un crecimiento futuro del proyecto pudiéndose agregar cuantas opciones de unidades de peso hagan falta, como se puede visualizar en los siguientes ejemplos.
   
   > Animación que muestra el subcomponente Main del Nutritional Info con las nuevas opciones disponibles para el usuario.
 
-  ![Opciones de unidad y cantidad disponibles para el usuario](./assets/media/readme/refactor/gif/nutritional-info-main-options.gif "Opciones de unidad y cantidad disponibles para el usuario")
+  ![Opciones de cantidad y unidades de peso disponibles para el usuario](./assets/media/readme/refactor/gif/nutritional-info-main-options.gif "Opciones de cantidad y unidades de peso disponibles para el usuario")
   
-  > Animación que muestra la capacidad del subcomponente Main de albergar cuantas opciones sean necesarias en caso de necesitar incorporar alguna nueva en el futuro.
+  > Animación que muestra la capacidad del subcomponente Main de albergar cuantas opciones de unidades de peso sean necesarias en caso de necesitar incorporar alguna nueva en el futuro.
 
-  ![Capacidad de escalar cantidad de opciones disponibles](./assets/media/readme/refactor/gif/nutritional-info-main-future-options.gif "Capacidad de escalar cantidad de opciones disponibles")
+  ![Capacidad de escalar cantidad de opciones de unidades de peso](./assets/media/readme/refactor/gif/nutritional-info-main-future-options.gif "Capacidad de escalar cantidad de opciones de unidades de peso")
+  
++ #### Soporte para entrada de datos de gran longitud
+  
+  En mi primer sitio, al tratarse de un desarrollo estático y, por ende, teniendo cierta previsibilidad de los datos a ser presentados, cometí el error de no contemplar la posibilidad de que dichos datos fuesen extremadamente grandes. En consecuencia, esto rompería por completo el diseño y maquetación del componente.
+  
+  En esta ocasión, al haberle dado la posibilidad al usuario de que decida él mismo la extensión de los datos a ser presentados, me vi obligado a tener presente este escenario que en aquella ocasión fue ignorado. Es así que dichos errores fueron abordados y posteriormente arreglados, dándole la posibilidad al usuario de poder ingresar datos de una longitud arbitraria sin que eso signifique que el componente se vea afectado en su presentación.
 
 
 
