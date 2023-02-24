@@ -38,6 +38,10 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
   > Animación que muestra el subcomponente Main del Nutritional Info con las nuevas opciones disponibles para el usuario.
 
   ![Opciones de unidad y cantidad disponibles para el usuario](./assets/media/readme/refactor/gif/nutritional-info-main-options.gif "Opciones de unidad y cantidad disponibles para el usuario")
+  
+  > Animación que muestra la capacidad del subcomponente Main de albergar cuantas opciones sean necesarias en caso de necesitar incorporar alguna nueva en el futuro.
+
+  ![Capacidad de escalar cantidad de opciones disponibles](./assets/media/readme/refactor/gif/nutritional-info-main-future-options.gif "Capacidad de escalar cantidad de opciones disponibles")
 
 
 
