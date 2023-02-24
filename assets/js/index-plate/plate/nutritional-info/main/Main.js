@@ -64,7 +64,7 @@ export class Main {
     let value = (multiplier * nutritionalInfo.kcals).toFixed();
     value = this.NUTRITIONAL_INFO.thousandSeparator(value);
 
-    this.$kcal.innerHTML = "383" + this.INDEX.separator + "kcal";
+    this.$kcal.innerHTML = value + this.INDEX.separator + "kcal";
   }
 
   /* Método para establecer el fondo */
