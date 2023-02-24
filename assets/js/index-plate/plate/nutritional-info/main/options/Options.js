@@ -26,7 +26,7 @@ export class Options {
     this.default4 = this.last4 = 4;
     this.default5 = this.last5 = 5;
     this.default6 = this.last6 = 6;
-    this.default7 = this.last7 = 8;
+    this.default7 = this.last7 = 7;
 
     this.LABEL = new Label(this);
 
