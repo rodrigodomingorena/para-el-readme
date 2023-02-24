@@ -33,7 +33,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
   En el primer proyecto, el usuario solamente contaba con una información nutricional estática [cada 300 gramos de alimento][nutritional-info-static-grams]. En este nuevo desarrollo se le da la posibilidad de introducir una cantidad numérica personalizada además de poder elegir qué tipo de unidad de peso representa dicha cantidad. En esta instancia se contemplan tres tipos de unidades: gramos, kilogramos y platos (donde cada plato equivale a 300 gramos).
   
-  Naturalmente, esta refactorización implicó un aumento de la complejidad del subcomponente [Main][nutritional-info-main] del [Nutritional Info][nutritional-info] aunque se logró mantener su independencia, además de que se prevé un crecimiento futuro del proyecto pudiéndose agregar cuantas unidades hagan falta, como se puede visualizar en los siguientes ejemplos.
+  Naturalmente, esta refactorización implicó un aumento de la complejidad del subcomponente [Main][nutritional-info-main] del [Nutritional Info][nutritional-info]. Aun así se logró mantener su independencia, además de que se prevé un crecimiento futuro del proyecto pudiéndose agregar cuantas unidades hagan falta, como se puede visualizar en los siguientes ejemplos.
   
   > Animación que muestra el subcomponente Main del Nutritional Info con las nuevas opciones disponibles para el usuario.
 
