@@ -23,10 +23,10 @@ export class Options {
     this.defaultGrams = this.lastGrams = 300;
     this.defaultKilograms = this.lastKilograms = 0.3;
     this.defaultPlates = this.lastPlates = 1;
-    this.default4 = this.last4 = 1000;
-    this.default5 = this.last5 = 1000;
-    this.default6 = this.last6 = 1000;
-    this.default7 = this.last7 = 1000;
+    this.default4 = this.last4 = 4;
+    this.default5 = this.last5 = 5;
+    this.default6 = this.last6 = 6;
+    this.default7 = this.last7 = 8;
 
     this.LABEL = new Label(this);
 
