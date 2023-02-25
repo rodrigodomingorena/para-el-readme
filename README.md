@@ -49,11 +49,11 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
   
   En esta ocasión, al haberle dado la posibilidad al usuario de que decida él mismo la extensión de los datos a ser presentados, me vi obligado a tener presente este escenario que en aquella ocasión fue ignorado. Es así que dichos errores fueron abordados y posteriormente arreglados, dándole la posibilidad al usuario de poder ingresar datos de una longitud arbitraria sin que eso signifique que el componente se vea afectado en su presentación.
   
-  > Animación que muestra el componente [Nutritional Info][info-nutricional] en el proyecto [Mi primer sitio][mi-primer-sitio-repo] y cómo al forzar la longitud de los datos presentados, se rompe el diseño y la maquetación.
+  > Animación que muestra el componente [Nutritional Info][info-nutricional] en el proyecto «[Mi primer sitio][mi-primer-sitio-repo]» y cómo al forzar la longitud de los datos presentados, se rompe el diseño y la maquetación.
   
   ![Rotura del diseño y maquetación para datos de gran longitud](./assets/media/readme/refactor/gif/nutritional-info-overflow-break.gif "Rotura del diseño y maquetación para datos de gran longitud")
   
-  > Animación que muestra el componente [Nutritional Info][nutritional-info] refactorizado de este proyecto y cómo al forzar la longitud de los datos presentados, el diseño y la maquetación se mantienen.
+  > Animación que muestra el componente [Nutritional Info][nutritional-info] refactorizado y cómo al forzar la longitud de los datos presentados, el diseño y la maquetación se mantienen.
 
   ![Soporte del diseño y maquetación para datos de gran longitud](./assets/media/readme/refactor/gif/nutritional-info-overflow-fixed.gif "Soporte del diseño y maquetación para datos de gran longitud")
 
