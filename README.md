@@ -57,7 +57,12 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
   ![Soporte del diseño y maquetación para datos de gran longitud](./assets/media/readme/refactor/gif/nutritional-info-overflow-fixed.gif "Soporte del diseño y maquetación para datos de gran longitud")
   
-   Obviamente, es muy difícil que el usuario tenga un interés genuino en ingresar una cantidad de, por ejemplo, kilogramos tan grande que haga que el recuento de calorías y gramos desborde los contenedores. Aun así, es un caso del que hay que estar prevenido y tratar de manejarlo para evitar errores y renderizados defectuosos.
+   Obviamente, es muy difícil que el usuario tenga un interés genuino en ingresar una cantidad de, por ejemplo, kilogramos tan grande que genere un recuento de calorías y gramos desbordando los contenedores. Aun así, es un caso del que hay que estar prevenido y tratar de manejarlo para evitar errores y renderizados defectuosos.
+   
++ #### Posibilidad de ampliar los «ratios» necesarios
+
+  Nuevamente, en mi primer sitio ignoré el escenario en donde el sitio necesitase crecer y en ese proceso ampliar la información de «ratios» que les son presentados al usuario. Al igual que con el soporte para entrada de datos de gran longitud, en esta ocasión dicha posibilidad fue contemplada y posteriormente arreglada, dándole la posibilidad al proyecto de que en un futuro pueda extender estas informaciones sin que el diseño y maquetación del subcomponente [Details][nutritional-info-details] se vea afectada.
+ 
 
 
 
@@ -90,6 +95,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [nutritional-info]: ./pages/plate.html#L179
 [nutritional-info-static-grams]: https://github.com/rodrigodomingorena/mi-primer-sitio/blob/master/pages/plato-1.html#L175
 [nutritional-info-main]: ./pages/plate.html#L182
+[nutritional-info-details]: ./pages/plate.html#L237
 
 [info-nutricional]: https://github.com/rodrigodomingorena/mi-primer-sitio/blob/master/pages/plato-1.html#L165
 
