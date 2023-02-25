@@ -48,6 +48,10 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
   En mi primer sitio, al tratarse de un desarrollo estático y, por ende, teniendo cierta previsibilidad de los datos a ser presentados, cometí el error de no contemplar la posibilidad de que dichos datos fuesen extremadamente grandes. En consecuencia, esto rompería por completo el diseño y maquetación del componente.
   
   En esta ocasión, al haberle dado la posibilidad al usuario de que decida él mismo la extensión de los datos a ser presentados, me vi obligado a tener presente este escenario que en aquella ocasión fue ignorado. Es así que dichos errores fueron abordados y posteriormente arreglados, dándole la posibilidad al usuario de poder ingresar datos de una longitud arbitraria sin que eso signifique que el componente se vea afectado en su presentación.
+  
+![no](./assets/media/readme/refactor/gif/nutritional-info-main-overflow-break.gif "no")
+
+![sí](./assets/media/readme/refactor/gif/nutritional-info-main-overflow-fixed.gif "sí")
 
 
 
