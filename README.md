@@ -14,6 +14,7 @@ A continuación voy a detallar algunas partes de este proyecto para que al momen
 
 ## Índice de contenidos
 + [Refactorización de componentes](#refactorización-de-componentes)
++ [API](#api)
 
 ## Refactorización de componentes
 
@@ -70,6 +71,8 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
   > Animación que muestra el subcomponente [Details][nutritional-info-details] refactorizado y cómo al ampliar la información de «ratios» presentados al usuario, el diseño y la maquetación se mantienen.
   
   ![Soporte del diseño y maquetación para ampliación de «ratios»](./assets/media/readme/refactor/gif/nutritional-info-details-ratio-fixed.gif "Soporte del diseño y maquetación para ampliación de «ratios»")
+  
+## API
 
 
 
