@@ -15,7 +15,7 @@ A continuación voy a detallar algunas partes de este proyecto para que al momen
 ## Índice de contenidos
 + [Refactorización de componentes](#refactorización-de-componentes)
    + [Nutritional Info](#nutritional-info)
-+ [API](#api)
++ [Base de datos con la *API REST* de *My JSON Server*](#base-de-datos-con-la-api-rest-de-my-json-server)
 
 ## Refactorización de componentes
 
@@ -73,7 +73,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
   
   ![Soporte del diseño y maquetación para ampliación de «ratios»](./assets/media/readme/refactor/gif/nutritional-info-details-ratio-fixed.gif "Soporte del diseño y maquetación para ampliación de «ratios»")
   
-## API
+## [Base de datos con la *API REST* de *My JSON Server*][json-server]
 
 
 
@@ -101,11 +101,12 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
 
 [index-page]: https://rodrigodomingorena.github.io/mi-primer-sitio-con-js/
-[mi-primer-sitio-repo]: https://github.com/rodrigodomingorena/mi-primer-sitio
 
 [nutritional-info]: ./pages/plate.html#L179
 [nutritional-info-main]: ./pages/plate.html#L182
 [nutritional-info-details]: ./pages/plate.html#L237
+
+[mi-primer-sitio-repo]: https://github.com/rodrigodomingorena/mi-primer-sitio
 
 [info-nutricional]: https://github.com/rodrigodomingorena/mi-primer-sitio/blob/master/pages/plato-1.html#L165
 [info-nutricional-static-grams]: https://github.com/rodrigodomingorena/mi-primer-sitio/blob/master/pages/plato-1.html#L175
@@ -117,4 +118,5 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [js-info]: https://es.javascript.info/
 [mdn]: https://developer.mozilla.org/en-US/
 [react]: https://beta.reactjs.org/
+[json-server]: https://github.com/typicode/json-server
 [bem]: https://github.com/rodrigodomingorena/mi-primer-sitio#metodolog%C3%ADa-bem
