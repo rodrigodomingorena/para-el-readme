@@ -16,6 +16,7 @@ A continuación voy a detallar algunas partes de este proyecto para que al momen
 + [Refactorización de componentes](#refactorización-de-componentes)
    + [Nutritional Info](#nutritional-info)
 + [Base de datos con la *API REST* de *My JSON Server*](#base-de-datos-con-la-api-rest-de-my-json-server)
+   + [Funcionamiento](#funcionamiento)
 
 ## Refactorización de componentes
 
@@ -73,27 +74,31 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
   
   ![Soporte del diseño y maquetación para ampliación de «ratios»](./assets/media/readme/refactor/gif/nutritional-info-details-ratio-fixed.gif "Soporte del diseño y maquetación para ampliación de «ratios»")
   
-## [Base de datos con la *API REST* de *My JSON Server*][json-server]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Base de datos con la *API REST* de [*My JSON Server*][json-server]
+   
+   Como es de esperarse en un sitio construido, al menos en parte, con JavaScript, busqué obtener de forma dinámica los datos de los platos disponibles con los que el usuario va a interactuar.
+  
+   Ya no existe un documento [menu.html][mi-primer-sitio-menu] en el que se encuentra un listado de todos los platos ya establecidos de antemano. En su lugar, ahora hay un documento [menu.html][menu] que trae los datos desde una base simulada y posteriormente renderizados según los requerimientos del usuario. Lo mismo ocurre con los documentos individuales de cada plato. En realidad, ya no existen tales documentos preestablecidos en un servidor esperando a ser entregados a un navegador que lo solicite. Ahora todos son manejados desde un único documento [plate.html][plate], que junto a su código JavaScript va renderizando diferentes platos dependiendo de las acciones del usuario. Se podría decir (de una forma muy cuidadosa) que es una pseudo SPA dentro del sitio general, ya que una vez dentro de este documento, jamás se realiza una recarga general para volver a renderizar tal o cual plato. En su lugar, solo se actualizan los componentes necesarios para mostrarle al usuario los datos correctos.
+   
+   Para poder concretar estos requerimientos sin aún poseer conocimientos en la construcción de una base de datos y la programación de su API, me apoyé en la herramienta [*My JSON Server*][json-server]. La elegí porque su uso básico es simple y cubría dichos requerimientos de forma exitosa. Esto me liberó de la tarea de aprender a las apuradas alguna otra herramienta un tanto más compleja para poder cubrir las necesidades del proyecto, desviándome así del objetivo principal que era enfocarme en JavaScript y su interacción con el navegador para renderizar de forma correcta la interfaz de usuario.
+   
+   ### Funcionamiento
+   
+   En la raíz del proyecto tuve que crear un JSON llamado [db.json][db]. En su versión *free*, la cual utilicé, este archivo no debe superar los 10 KB de peso. Es por eso que existen dos tipos de archivos, uno es este y el otro es [db-expand.json][db-expand]. El primero es al que se hacen las solicitudes reales y el único al que la herramienta [*My JSON Server*][json-server] reconoce. Este archivo tiene la particularidad de estar minificado con el objetivo de no superar dicho límite de peso. El segundo existe solamente con el propósito de ser legible para humanos, conteniendo exactamente los mismos datos que [db.json][db], pero que lamentablemente supera el límite impidiendo que esta herramienta funcione correctamente.
+   
+   Una vez creado el archivo [db.json][db], solo resta realizar solicitudes a la URL https://my-json-server.typicode.com seguida del nombre de usuario de GitHub, el nombre del repositorio y, opcionalmente, el *endpoint* al cual acceder.
+   
+   Como podrás ver en [db-expand.json][db-expand], el archivo solo cuenta con dos *endpoints*: [plates][db-expand-plates] y [nutritionalInfo][db-expand-nutritional-info]. El primero contiene la información necesaria para identificar cada plato disponible, sus precios, a qué categorías pertenecen, un identificador para acceder a sus imágenes en el directorio y una breve descripción. El segundo es utilizado principalmente para mostrar la información nutricional asociada a cada plato en particular, conteniendo la propiedad "plateId" que los asocia con el objeto del mismo "id" presente en [plates][db-expand-plates].
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -101,22 +106,28 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
 
 [index-page]: https://rodrigodomingorena.github.io/mi-primer-sitio-con-js/
+[menu]: ./pages/menu.html
+[plate]: ./pages/plate.html
+[db]: ./db.json
+[db-expand]: ./db-expand.json
+[db-expand-plates]: ./db-expand.json#L2
+[db-expand-nutritional-info]: ./db-expand.json#L165
 
 [nutritional-info]: ./pages/plate.html#L179
 [nutritional-info-main]: ./pages/plate.html#L182
 [nutritional-info-details]: ./pages/plate.html#L237
 
 [mi-primer-sitio-repo]: https://github.com/rodrigodomingorena/mi-primer-sitio
+[mi-primer-sitio-menu]: https://github.com/rodrigodomingorena/mi-primer-sitio/blob/master/pages/menu.html
 
 [info-nutricional]: https://github.com/rodrigodomingorena/mi-primer-sitio/blob/master/pages/plato-1.html#L165
 [info-nutricional-static-grams]: https://github.com/rodrigodomingorena/mi-primer-sitio/blob/master/pages/plato-1.html#L175
 [info-nutricional-details]: https://github.com/rodrigodomingorena/mi-primer-sitio/blob/master/pages/plato-1.html#L178
 
-
+[json-server]: https://github.com/typicode/json-server
 
 
 [js-info]: https://es.javascript.info/
 [mdn]: https://developer.mozilla.org/en-US/
 [react]: https://beta.reactjs.org/
-[json-server]: https://github.com/typicode/json-server
 [bem]: https://github.com/rodrigodomingorena/mi-primer-sitio#metodolog%C3%ADa-bem
