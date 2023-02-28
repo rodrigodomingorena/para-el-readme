@@ -109,6 +109,13 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
       }
       ```
       
+      +  `id`: identificador único del plato
+      +  `name`: nombre del plato
+      +  `price`: precio del plato
+      +  `categories`: categorías en las cuales se puede clasificar el plato
+      +  `imageId`: identificador para llamar al directorio correcto de imágenes
+      +  `description`: breve descripción del plato.
+      
    +  #### [nutritionalInfo][db-expand-nutritional-info]
       
       > Fragmento del [db-expand.json][db-expand] que ejemplifica el *endpoint* `nutritionalInfo` conteniendo el objeto cuyos datos corresponden al primer plato.
