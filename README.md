@@ -146,6 +146,22 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
       }
       ```
       
+      +  `id`: identificador único de la información nutricional
+      +  `plateId`: identificador que asocia la información nutricional con el plato del *endpoint* [plates](#plates) que posea el mismo identificador
+      +  `kcals`: valor de calorías totales por gramo de alimento
+      +  `fats`
+         + `total`: valor de gramos de grasas totales por gramo de alimento
+         + `saturated`: valor de gramos de grasas saturadas por gramo de alimento
+         + `polyunsaturated`: valor de gramos de grasas poliinsaturadas por gramo de alimento
+         + `monounsaturated`: valor de gramos de grasas monoinsaturadas por gramo de alimento
+      +  `carbohydrates`
+         + `total`: valor de gramos de carbohidratos totales por gramo de alimento
+         + `sugar`: valor de gramos de azúcar por gramo de alimento
+         + `fiber`: valor de gramos de fibra por gramo de alimento
+      +  `proteins`
+         + `total`: valor de gramos de proteínas por gramo de alimento   
+      
+      
    
    
    
