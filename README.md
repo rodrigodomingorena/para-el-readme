@@ -88,13 +88,11 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    
    Una vez creado el archivo [db.json][db], solo resta realizar solicitudes a la URL https://my-json-server.typicode.com seguida del nombre de usuario de GitHub, el nombre del repositorio y, opcionalmente, el [*endpoint*](#endpoints) al cual acceder. Este manejo básico de la URL y sus rutas fue centralizado en el *helper* llamado [api.js][api]. Luego, los archivos que necesiten realizar alguna solicitud a la API solo deben importar la URL a la que quieran acceder desde dicho recurso e invocarla. Cabe aclarar que la API soporta los métodos [GET][get], [POST][post], [PUT][put], [PATCH][patch] y [DELETE][delete], aunque en el desarrollo de este proyecto necesité utilizar únicamente el método [GET][get].
    
-   Como podrás ver en [db-expand.json][db-expand], el archivo solo cuenta con dos *endpoints*: [plates][db-expand-plates] y [nutritionalInfo][db-expand-nutritional-info]. El primero contiene la información necesaria para identificar cada plato disponible, sus precios, a qué categorías pertenecen, un identificador para acceder a sus imágenes en el directorio y una breve descripción. El segundo es utilizado principalmente para mostrar la información nutricional asociada a cada plato en particular, conteniendo la propiedad "plateId" que los asocia con el objeto del mismo "id" presente en [plates][db-expand-plates].
-   
    ### *Endpoints*
    
    +  #### [plates][db-expand-plates]
    
-      > Fragmento del [db-expand.json][db-expand] que ejemplifica el *endpoint* `plates` mostrando el objeto cuyos datos corresponden al primer plato.
+      > Fragmento del [db-expand.json][db-expand] que ejemplifica el *endpoint* `plates` conteniendo el objeto cuyos datos corresponden al primer plato.
    
       ```json
       {
@@ -107,6 +105,36 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
                "imageId": 1,
                "description": "Se trata de una ensalada hecha con trigo burgol..."
             }
+         ]
+      }
+      ```
+      
+   +  #### [nutritionalInfo][db-expand-nutritional-info]
+      
+      > Fragmento del [db-expand.json][db-expand] que ejemplifica el *endpoint* `nutritionalInfo` conteniendo el objeto cuyos datos corresponden al primer plato.
+         
+      ```json
+      {
+         "nutritionalInfo": [
+            {
+               "id": 1,
+               "plateId": 1,
+               "kcals": 1.277,
+               "fats": {
+                  "total": 0.0962,
+                  "saturated": 0.0134,
+                  "polyunsaturated": 0.0108,
+                  "monounsaturated": 0.06801
+               },
+               "carbohydrates": {
+                  "total": 0.1023,
+                  "sugar": 0.0138,
+                  "fiber": 0.0236
+               },
+               "proteins": {
+                  "total": 0.0169
+               }
+           }
          ]
       }
       ```
