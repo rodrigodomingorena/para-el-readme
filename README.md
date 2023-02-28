@@ -86,7 +86,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    
    En la raíz del proyecto tuve que crear un JSON llamado [db.json][db]. En su versión *free*, la cual utilicé, este archivo no debe superar los 10 KB de peso. Es por eso que existen dos tipos de archivos, uno es este y el otro es [db-expand.json][db-expand]. El primero es al que se hacen las solicitudes reales y el único al que la herramienta [*My JSON Server*][json-server] reconoce. Este archivo tiene la particularidad de estar minificado con el objetivo de no superar dicho límite de peso. El segundo existe solamente con el propósito de ser legible para humanos, conteniendo exactamente los mismos datos que [db.json][db], pero que lamentablemente supera el límite impidiendo que esta herramienta funcione correctamente con él.
    
-   Una vez creado el archivo [db.json][db], solo resta realizar solicitudes a la URL https://my-json-server.typicode.com seguida del nombre de usuario de GitHub, el nombre del repositorio y, opcionalmente, el [*endpoint*](#endpoints) al cual acceder. Este manejo básico de la URL y sus rutas fue centralizado en el *helper* llamado [api.js][api]. Luego, los archivos que necesiten realizar alguna solicitud a la API solo deben importar la URL a la que quieran acceder desde dicho recurso e invocarla. Cabe aclarar que la API soporta los métodos [GET][get], [POST][post], [PUT][put], [PATCH][patch] y [DELETE][delete], aunque en el desarrollo de este proyecto necesité utilizar únicamente el método [GET][get].
+   Una vez creado el archivo [db.json][db], solo resta realizar solicitudes a la URL https://my-json-server.typicode.com seguida del nombre de usuario de GitHub, el nombre del repositorio y, opcionalmente, el [*endpoint*](#endpoints) al cual acceder. Este manejo básico de la URL y sus rutas fue centralizado en el *helper* llamado [api.js][api]. Luego, los archivos que necesiten realizar alguna solicitud a la *API* solo deben importar la URL a la que quieran acceder desde dicho recurso e invocarla. Cabe aclarar que la *API* soporta los métodos [GET][get], [POST][post], [PUT][put], [PATCH][patch] y [DELETE][delete], aunque en el desarrollo de este proyecto necesité utilizar únicamente el método [GET][get].
    
    ### *Endpoints*
    
@@ -147,21 +147,17 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
       ```
       
       +  `id`: identificador único de la información nutricional.
-      +  `plateId`: identificador que asocia la información nutricional con el plato del *endpoint* [plates](#plates) que posea el mismo identificador.
+      +  `plateId`: identificador que asocia la información nutricional con el plato del *endpoint* [plates](#plates) que posea el mismo identificador (obligatorio de [*My JSON Server*][json-server]).
       +  `kcals`: valor de calorías por gramo de alimento.
-      +  `fats`
-         + `total`: valor de gramos de grasas por gramo de alimento.
-         + `saturated`: valor de gramos de grasas saturadas por gramo de alimento.
-         + `polyunsaturated`: valor de gramos de grasas poliinsaturadas por gramo de alimento.
-         + `monounsaturated`: valor de gramos de grasas monoinsaturadas por gramo de alimento.
-      +  `carbohydrates`
-         + `total`: valor de gramos de carbohidratos por gramo de alimento.
-         + `sugar`: valor de gramos de azúcar por gramo de alimento.
-         + `fiber`: valor de gramos de fibra por gramo de alimento.
-      +  `proteins`
-         + `total`: valor de gramos de proteínas por gramo de alimento.
+      +  `fats`: valores de gramos de grasas totales y específicas por gramo de alimento.
+      +  `carbohydrates`: valores de gramos de carbohidratos totales y específicos por gramo de alimento.
+      +  `proteins`: valor de gramos de proteínas totales por gramo de alimento
       
-   ### Rutas
+   ### [Rutas][json-server-routes]
+   
+   Por último, esta herramienta da la posibilidad de realizar solicitudes a través de una URL cuya ruta contenga una serie de parámetros de búsqueda personalizados para poder obtener recursos, por ejemplo, paginados, que superen ciertos filtros o bien para embeber informaciones asociadas a esos recursos, tales como la [nutritionalInfo](#nutritionalinfo) de los [plates](#plates).
+   
+   En el resumen del proceso de desarrollo de [Menu](#menu) y [Plate](#plate) se puede encontrar el modo de uso de estos tipos de parámetros para personalizar la experiencia del usuario que interactúe con el sitio. A modo de mención, algunos de los parámetros más utilizados que la *API* proporciona son: [*paginate*][json-server-paginate], [*sort*][json-server-sort], [*operators*][json-server-operators], [*full text search*][json-server-full-text-search] y [*relationships*][json-server-relationships].
       
       
    
@@ -201,6 +197,12 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [info-nutricional-details]: https://github.com/rodrigodomingorena/mi-primer-sitio/blob/master/pages/plato-1.html#L178
 
 [json-server]: https://github.com/typicode/json-server
+[json-server-routes]: https://github.com/typicode/json-server#routes
+[json-server-paginate]: https://github.com/typicode/json-server#paginate
+[json-server-sort]: https://github.com/typicode/json-server#sort
+[json-server-operators]: https://github.com/typicode/json-server#operators
+[json-server-full-text-search]: https://github.com/typicode/json-server#full-text-search
+[json-server-relationships]: https://github.com/typicode/json-server#relationships
 
 
 [js-info]: https://es.javascript.info/
