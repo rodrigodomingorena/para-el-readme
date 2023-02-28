@@ -17,6 +17,8 @@ A continuación voy a detallar algunas partes de este proyecto para que al momen
    + [Nutritional Info](#nutritional-info)
 + [Base de datos con la *API REST* de *My JSON Server*](#base-de-datos-con-la-api-rest-de-my-json-server)
    + [Funcionamiento](#funcionamiento)
+   + [*Endpoints*](#endpoints)
+   + [Rutas](#rutas)
 
 ## Refactorización de componentes
 
