@@ -80,9 +80,9 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    
    Como es de esperarse en un sitio construido, al menos en parte, con JavaScript, busqué obtener de forma dinámica los datos de los platos con los que el usuario va a interactuar.
   
-   Ya no existe un documento [menu.html][mi-primer-sitio-menu] en el que se encuentra un listado de todos los platos establecidos de antemano. En su lugar, ahora hay un documento [menu.html][menu] que trae los datos desde una base simulada y posteriormente los renderiza según los requerimientos del usuario. Lo mismo ocurre con los documentos individuales de cada plato. En realidad, ya no existen tales documentos preestablecidos en un servidor esperando a ser entregados a un navegador que lo solicite. Ahora todos son manejados desde un único documento [plate.html][plate], que junto a su código JavaScript va renderizando diferentes platos dependiendo de las acciones del usuario. Se podría decir que tiene la misma lógica de funcionamiento que una [*SPA*][spa] dentro del sitio general, ya que una vez en este documento, jamás se realiza una recarga general para volver a renderizar tal o cual plato. En su lugar, solo se actualizan los componentes necesarios para mostrarle al usuario los datos correctos.
+   Ya no existe un documento [menu.html][mi-primer-sitio-menu] en el que se encuentra un listado de todos los platos establecidos de antemano. En su lugar, ahora hay un documento [menu.html][menu] que trae los datos desde una base simulada y posteriormente los renderiza según los requerimientos del usuario. Lo mismo ocurre con los documentos individuales de cada plato. En realidad, ya no existen tales documentos preestablecidos en un servidor esperando a ser entregados a un navegador que los solicite. Ahora todos son manejados desde un único documento [plate.html][plate], que junto a su código JavaScript va renderizando diferentes platos dependiendo de las acciones del usuario. Se podría decir que tiene la misma lógica de funcionamiento que una [*SPA*][spa] dentro del sitio general, ya que una vez en este documento, jamás se realiza una recarga general para volver a renderizar tal o cual plato. En su lugar, solo se actualizan los componentes necesarios para mostrarle al usuario los datos correctos.
    
-   Para poder concretar estos requerimientos sin aún poseer conocimientos en la construcción de una base de datos y la programación de su API, me apoyé en la herramienta [*My JSON Server*][json-server]. La elegí porque su uso básico es simple y cubría dichos requerimientos de forma exitosa. Esto me liberó de la tarea de aprender a las apuradas alguna otra herramienta un tanto más compleja para poder cubrir las necesidades del proyecto, desviándome así del objetivo principal que era enfocarme en JavaScript y su interacción con el navegador para renderizar de forma correcta la interfaz de usuario.
+   Para poder concretar estos requerimientos sin aún poseer conocimientos en la construcción de una base de datos y la programación de su *API*, me apoyé en la herramienta [*My JSON Server*][json-server]. La elegí porque su uso básico es simple y cubría dichos requerimientos de forma exitosa. Esto me liberó de la tarea de aprender a las apuradas alguna otra herramienta un tanto más compleja para poder cubrir las necesidades del proyecto, desviándome así del objetivo principal que era enfocarme en JavaScript y su interacción con el navegador para renderizar de forma correcta la interfaz de usuario.
    
    ### Funcionamiento
    
@@ -162,11 +162,6 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    En el resumen del proceso de desarrollo de [Menu](#menu) y [Plate](#plate) se puede encontrar el modo de uso de estos tipos de parámetros para personalizar la experiencia del usuario que interactúe con el sitio. A modo de mención, algunos de los parámetros más utilizados que la *API* proporciona son: [*paginate*][json-server-paginate], [*sort*][json-server-sort], [*operators*][json-server-operators], [*full text search*][json-server-full-text-search] y [*relationships*][json-server-relationships].
    
    
-   ```mermaid
-      flowchart LR
-         A[start] --> B[nutritionalInfo]
-         click B "https://github.com/rodrigodomingorena/para-el-readme#endpoints" "This is a link"
-   ```
       
       
    
