@@ -160,6 +160,13 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    Por último, esta herramienta da la posibilidad de realizar solicitudes a través de una URL cuya ruta contenga una serie de parámetros de búsqueda personalizados para poder obtener recursos, por ejemplo, paginados, que superen ciertos filtros o bien para embeber informaciones asociadas a esos recursos, tales como la [nutritionalInfo](#nutritionalinfo) de los [plates](#plates).
    
    En el resumen del proceso de desarrollo de [Menu](#menu) y [Plate](#plate) se puede encontrar el modo de uso de estos tipos de parámetros para personalizar la experiencia del usuario que interactúe con el sitio. A modo de mención, algunos de los parámetros más utilizados que la *API* proporciona son: [*paginate*][json-server-paginate], [*sort*][json-server-sort], [*operators*][json-server-operators], [*full text search*][json-server-full-text-search] y [*relationships*][json-server-relationships].
+   
+   
+   ```mermaid
+      flowchart LR
+         A[start] --> B[nutritionalInfo]
+         click B "https://github.com/rodrigodomingorena/para-el-readme/edit/master/README.md#endpoints" "This is a link"
+   ```
       
       
    
