@@ -165,7 +165,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    ```mermaid
       flowchart LR
          A[start] --> B[nutritionalInfo]
-         click B "https://github.com/rodrigodomingorena/para-el-readme/edit/master/README.md#endpoints" "This is a link"
+         click B "https://github.com/rodrigodomingorena/para-el-readme#endpoints" "This is a link"
    ```
       
       
