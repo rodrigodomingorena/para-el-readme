@@ -166,16 +166,37 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
    ```mermaid
    flowchart LR
-      index([Index]) --> menu[Menu]
-      menu ---> controls[Controls] & cards[Cards]
-      controls ---> search[Search] & option[OptionControl]
-      option ----> modal[Modal] & input[Input] & list[List] & confirm[Confirm]
-      modal ---> show[Show] & hide[Hide]
-      input --> range[Range]
-      range ---> from[From] & to[To]
-      list ----> label[Label] & item[Item] & inputlist[InputList]
-      inputlist ---> F[Filter] & sort[Sort]
-      cards ----> card[Card] & showmore[ShowMore] & errorcards[ErrorCards]
+      index([Index]) --- menu[Menu]
+      
+      menu ----- controls[Controls]
+      menu ----- cards[Cards]
+            
+      controls --- search[Search]
+      controls ---- option[OptionControl]
+      
+      option ---- modal[Modal]
+      option ----- input[Input]
+      option ----- list[List]
+      option ---- confirm[Confirm]
+            
+      modal --- show[Show]
+      modal --- hide[Hide]
+      
+      input --- range[Range]
+ 
+      range ---- from[From]
+      range ---- to[To]
+      
+      list ---- label[Label]
+      list ---- item[Item]
+      list ----- inputlist[InputList]
+      
+      inputlist --- F[Filter]
+      inputlist --- sort[Sort]
+      
+      cards ---- card[Card]
+      cards ---- showmore[ShowMore]
+      cards ---- errorcards[ErrorCards]
    ```
    
    
