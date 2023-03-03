@@ -168,24 +168,24 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    flowchart LR
       index([Index]) --- menu[Menu]
       
-      menu ----- controls[Controls]
-      menu ---- cards[Cards]
+      menu ---- controls[Controls]
+      menu --- cards[Cards]
             
       controls --- search[Search]
       controls ---- option[OptionControl]
       
-      option ---- modal[Modal]
-      option ----- input[Input]
-      option ----- list[List]
-      option ---- confirm[Confirm]
+      option --- modal[Modal]
+      option ---- input[Input]
+      option ---- list[List]
+      option --- confirm[Confirm]
             
       modal --- show[Show]
       modal --- hide[Hide]
       
       input --- range[Range]
  
-      range ---- from[From]
-      range ---- to[To]
+      range --- from[From]
+      range --- to[To]
       
       list ---- label[Label]
       list ---- item[Item]
