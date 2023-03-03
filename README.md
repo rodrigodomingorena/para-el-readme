@@ -162,53 +162,11 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    En el resumen del proceso de desarrollo de [Menu](#menu) y [Plate](#plate) se puede encontrar el modo de uso de estos tipos de parámetros para personalizar la experiencia del usuario que interactúe con el sitio. A modo de mención, algunos de los parámetros más utilizados que la *API* proporciona son: [*paginate*][json-server-paginate], [*sort*][json-server-sort], [*operators*][json-server-operators], [*full text search*][json-server-full-text-search] y [*relationships*][json-server-relationships].
    
    
-## JavaScript
+## [JavaScript][javascript]
 
-   ```mermaid
-   flowchart TB
-      A([Index.js]) --- B[Menu.js]
-      
-      B --- CONTROLES
-      B --- CARDS
-      
-      
-      subgraph CONTROLES
-      direction TB
-      C[Controls.js]
-
-      C --- D[Search.js]
-      C --- E[OptionControl.js]
-      
-      E --- F[Modal.js]
-      E --- I[Input.js]
-      E --- M[List.js]
-      E --- S[Confirm.js]
-            
-      F --- G[Show.js]
-      F --- H[Hide.js]
-      
-      I --- J[Range.js]
- 
-      J --- K[From.js]
-      J --- L[To.js]
-      
-      M --- N[Label.js]
-      M --- O[Item.js]
-      M --- P[InputList.js]
-      
-      P --- Q[Filter.js]
-      P --- R[Sort.js]
-      end
-      
-      subgraph CARDS
-      direction TB
-      T[Cards.js]
-
-      T --- U[Card.js]
-      T --- V[ShowMore.js]
-      T --- W[ErrorCards.js]
-      end
-   ```
+   ### [Menu][index-menu-js]
+   
+   Como mencioné con anterioridad, el documento [menu.html][menu] fue reestructurado de manera tal que el listado de platos presentados al usuario se construye dinámicamente en base a ciertos parámetros. En esta reestructuración hay tres partes fundamentales que trabajan en conjunto para poder llevar a cabo este propósito: la sección [Controls][controls-section], la sección [Cards][cards-section] y la ya expuesta [base de datos](#base-de-datos-con-la-api-rest-de-my-json-server).
    
    
       
@@ -230,13 +188,20 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
 
 [index-page]: https://rodrigodomingorena.github.io/mi-primer-sitio-con-js/
+
 [menu]: ./pages/menu.html
+[controls-section]: ./pages/menu.html#L127
+[cards-section]: ./pages/menu.html#L415
+
 [plate]: ./pages/plate.html
 [db]: ./db.json
 [db-expand]: ./db-expand.json
 [db-expand-plates]: ./db-expand.json#L2
 [db-expand-nutritional-info]: ./db-expand.json#L165
 [api]: ./assets/js/helpers/api.js
+[javascript]: ./assets/js
+
+[index-menu-js]: ./assets/js/index-menu.js
 
 [nutritional-info]: ./pages/plate.html#L179
 [nutritional-info-main]: ./pages/plate.html#L182
