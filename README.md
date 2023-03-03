@@ -162,6 +162,23 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    En el resumen del proceso de desarrollo de [Menu](#menu) y [Plate](#plate) se puede encontrar el modo de uso de estos tipos de parámetros para personalizar la experiencia del usuario que interactúe con el sitio. A modo de mención, algunos de los parámetros más utilizados que la *API* proporciona son: [*paginate*][json-server-paginate], [*sort*][json-server-sort], [*operators*][json-server-operators], [*full text search*][json-server-full-text-search] y [*relationships*][json-server-relationships].
    
    
+## JavaScript
+
+   ```mermaid
+   flowchart LR
+      index([Index]) --> menu[Menu]
+      menu ---> controls[Controls] & cards[Cards]
+      controls ---> search[Search] & option[OptionControl]
+      option ----> modal[Modal] & input[Input] & list[List] & confirm[Confirm]
+      modal ---> show[Show] & hide[Hide]
+      input --> range[Range]
+      range ---> from[From] & to[To]
+      list ----> label[Label] & item[Item] & inputlist[InputList]
+      inputlist ---> F[Filter] & sort[Sort]
+      cards ----> card[Card] & showmore[ShowMore] & errorcards[ErrorCards]
+   ```
+   
+   
       
       
    
