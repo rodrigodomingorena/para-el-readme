@@ -172,6 +172,8 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    
    #### [Controls][controls-js]
    
+   Dentro de esta sección se encuentran las herramientas que se le brindan al usuario para que pueda personalizar los platos a ser presentados. La clase [Controls][controls-class] es la encargada de centralizar toda la actividad, alojando las interfaces que representan a cada *Control* particular y manejando el establecimiento y actualización de los parámetros de búsqueda y sus valores en base a la configuración inicial y los cambios efectuados de cada *Control*. Es decir, es su capa esencial, la lógica de esta sección es establecer en la inicialización los parámetros de búsqueda y sus respectivos valores y luego ir actualizándolos cada vez que algún *Control* dentro de ella sufra un cambio que requiera que dichos valores deban ser actualizados. Posteriormente, estos parámetros y sus valores permanecerán disponibles en todo momento para ser utilizados en la sección [Cards](#cards) al momento de realizar un solicitud personalizada a la [base de datos][db].
+   
       
       
    
@@ -197,16 +199,19 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [cards-section]: ./pages/menu.html#L415
 
 [plate]: ./pages/plate.html
+
 [db]: ./db.json
 [db-expand]: ./db-expand.json
 [db-expand-plates]: ./db-expand.json#L2
 [db-expand-nutritional-info]: ./db-expand.json#L165
 [api]: ./assets/js/helpers/api.js
+
 [javascript]: ./assets/js
 
 [index-menu]: ./assets/js/index-menu
 [index-menu-js]: ./assets/js/index-menu.js
 [controls-js]: ./assets/js/index-menu/menu/controls
+[controls-class]: ./assets/js/index-menu/menu/controls/Controls.js#LL7C16-L7C16
 
 [nutritional-info]: ./pages/plate.html#L179
 [nutritional-info-main]: ./pages/plate.html#L182
