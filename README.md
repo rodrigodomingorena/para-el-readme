@@ -169,7 +169,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
       index([Index]) --- menu[Menu]
       
       menu ----- controls[Controls]
-      menu ----- cards[Cards]
+      menu ---- cards[Cards]
             
       controls --- search[Search]
       controls ---- option[OptionControl]
@@ -194,9 +194,9 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
       inputlist --- F[Filter]
       inputlist --- sort[Sort]
       
-      cards ---- card[Card]
-      cards ---- showmore[ShowMore]
-      cards ---- errorcards[ErrorCards]
+      cards --- card[Card]
+      cards --- showmore[ShowMore]
+      cards --- errorcards[ErrorCards]
    ```
    
    
