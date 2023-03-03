@@ -165,38 +165,49 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 ## JavaScript
 
    ```mermaid
-   flowchart LR
-      index([Index]) --- menu[Menu]
+   flowchart TB
+      A([Index.js]) --- B[Menu.js]
       
-      menu ---- controls[Controls]
-      menu --- cards[Cards]
+      B --- CONTROLES
+      B --- CARDS
+      
+      
+      subgraph CONTROLES
+      direction TB
+      C[Controls.js]
+
+      C --- D[Search.js]
+      C --- E[OptionControl.js]
+      
+      E --- F[Modal.js]
+      E --- I[Input.js]
+      E --- M[List.js]
+      E --- S[Confirm.js]
             
-      controls --- search[Search]
-      controls ---- option[OptionControl]
+      F --- G[Show.js]
+      F --- H[Hide.js]
       
-      option --- modal[Modal]
-      option ---- input[Input]
-      option ---- list[List]
-      option --- confirm[Confirm]
-            
-      modal --- show[Show]
-      modal --- hide[Hide]
-      
-      input --- range[Range]
+      I --- J[Range.js]
  
-      range --- from[From]
-      range --- to[To]
+      J --- K[From.js]
+      J --- L[To.js]
       
-      list ---- label[Label]
-      list ---- item[Item]
-      list ----- inputlist[InputList]
+      M --- N[Label.js]
+      M --- O[Item.js]
+      M --- P[InputList.js]
       
-      inputlist --- F[Filter]
-      inputlist --- sort[Sort]
+      P --- Q[Filter.js]
+      P --- R[Sort.js]
+      end
       
-      cards --- card[Card]
-      cards --- showmore[ShowMore]
-      cards --- errorcards[ErrorCards]
+      subgraph CARDS
+      direction TB
+      T[Cards.js]
+
+      T --- U[Card.js]
+      T --- V[ShowMore.js]
+      T --- W[ErrorCards.js]
+      end
    ```
    
    
