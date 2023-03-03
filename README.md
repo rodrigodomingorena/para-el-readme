@@ -166,8 +166,11 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
    ### [Menu][index-menu-js]
    
-   Como mencioné con anterioridad, el documento [menu.html][menu] fue reestructurado de manera tal que el listado de platos presentados al usuario se construye dinámicamente en base a ciertos parámetros. En esta reestructuración hay tres partes fundamentales que trabajan en conjunto para poder llevar a cabo este propósito: la sección [Controls][controls-section], la sección [Cards][cards-section] y la ya expuesta [base de datos](#base-de-datos-con-la-api-rest-de-my-json-server).
+   Como mencioné con anterioridad, el documento [menu.html][menu] fue reestructurado de manera tal que el listado de platos presentados al usuario se construye dinámicamente en base a ciertos parámetros. En esta reestructuración hay tres partes fundamentales que trabajan en conjunto para poder llevar a cabo este propósito: la sección [Controls][controls-section], la sección [Cards][cards-section] y la ya expuesta [base de datos](#base-de-datos-con-la-api-rest-de-my-json-server). Es así que en conjunto, estas secciones del código le permiten al usuario disponer de una variedad de platos ajustados a sus necesidades y gustos, según sea la ocasión.
    
+   A continuación se expondrá el contenido y lógica de funcionamiento de estas secciones para que al momento de explorar el [directorio JavaScript del Menu][index-menu] puedas contar con una guía explicativa y visual que te ayude a comprenderlo mejor.
+   
+   ### [Controls][controls-js]
    
       
       
@@ -201,7 +204,9 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [api]: ./assets/js/helpers/api.js
 [javascript]: ./assets/js
 
+[index-menu]: ./assets/js/index-menu
 [index-menu-js]: ./assets/js/index-menu.js
+[controls-js]: ./assets/js/index-menu/menu/controls
 
 [nutritional-info]: ./pages/plate.html#L179
 [nutritional-info-main]: ./pages/plate.html#L182
