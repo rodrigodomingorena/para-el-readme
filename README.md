@@ -170,7 +170,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    
    A continuación se expondrá el contenido y lógica de funcionamiento de estas secciones para que al momento de explorar el [directorio JavaScript del Menu][index-menu] puedas contar con una guía explicativa y visual que te ayude a comprenderlo mejor.
    
-   ### [Controls][controls-js]
+   #### [Controls][controls-js]
    
       
       
