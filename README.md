@@ -172,7 +172,15 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    
    #### [Controls][controls-js]
    
-   Dentro de esta sección se encuentran las herramientas que se le brindan al usuario para que pueda personalizar los platos a ser presentados. La clase [Controls][controls-class] es la encargada de centralizar toda la actividad, alojando las interfaces que representan a cada *Control* particular y manejando el establecimiento y actualización de los parámetros de búsqueda y sus valores en base a la configuración inicial y los cambios efectuados de cada *Control*. Es decir, es su capa esencial, la lógica de esta sección es establecer en la inicialización los parámetros de búsqueda y sus respectivos valores y luego ir actualizándolos cada vez que algún *Control* dentro de ella sufra un cambio que requiera que dichos valores deban ser actualizados. Posteriormente, estos parámetros y sus valores permanecerán disponibles en todo momento para ser utilizados en la sección [Cards](#cards) al momento de realizar un solicitud personalizada a la [base de datos][db].
+   Dentro de esta sección se encuentran las herramientas que se le brindan al usuario para que pueda personalizar los platos a ser presentados.
+   
+   La clase [Controls][controls-class] es la encargada de centralizar toda la actividad, alojando las interfaces que representan a cada *Control* particular y manejando el establecimiento y actualización de los parámetros de búsqueda y sus valores en base a la configuración inicial y los cambios efectuados en cada *Control*.
+   
+   Es decir, en su capa esencial, la lógica de esta sección es establecer en la inicialización los parámetros de búsqueda y sus respectivos valores y luego ir actualizándolos cada vez que algún *Control* dentro de ella sufra un cambio que requiera que dichos valores deban ser actualizados. Posteriormente, estos parámetros y sus valores permanecerán disponibles para ser utilizados en la sección [Cards](#cards) al momento de realizar una solicitud personalizada a la [base de datos][db].
+   
+   
+   
+
    
       
       
