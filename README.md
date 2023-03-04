@@ -172,6 +172,10 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    
    #### [Controls][controls-js]
    
+   > Imagen que grafica la sección Controls y sus contenidos
+
+  ![Contenido de la sección Controls](./assets/media/readme/menu/controls/content.png "Contenido de la sección Controls")
+   
    Dentro de esta sección se encuentran las herramientas que se le brindan al usuario para que pueda personalizar los platos a ser presentados.
    
    La clase [Controls][controls-class] es la encargada de centralizar toda la actividad, alojando las interfaces que representan a cada *Control* particular y manejando el establecimiento y actualización de los parámetros de búsqueda y sus valores en base a la configuración inicial y los cambios efectuados en cada *Control*.
