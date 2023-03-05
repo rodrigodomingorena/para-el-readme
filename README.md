@@ -184,18 +184,20 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    classDiagram
     direction LR
     class Controls {
-        Object params
+        params
         setParams()
         setURLParams()
         getParams()
         getParamPrefixes()
     }
 
-    Controls --> Search
-    Controls --> OptionControl
+    Controls --> Search : contiene
+    Controls --> OptionControl : contiene
    ```
    
    Es decir, en su capa esencial, la lógica de esta sección es establecer en la inicialización los parámetros de búsqueda y sus respectivos valores y luego ir actualizándolos cada vez que algún *Control* dentro de ella sufra un cambio que requiera que dichos valores deban ser actualizados. Posteriormente, estos parámetros y sus valores permanecerán disponibles para ser utilizados en la sección [Cards](#cards) al momento de realizar una solicitud personalizada a la [base de datos][db].
+   
+   ##### Inicialización de parámetros
    
    
    
