@@ -221,6 +221,17 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
    ##### [Search][search-js]
    
+   ```html
+   <input
+     class="controls__search__input"
+     type="search"
+     name="search"
+     data-params="q"
+     placeholder="Buscar"
+     autocomplete="off"
+   />
+   ```
+   
    
    
    
