@@ -221,9 +221,9 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
    ##### [Search][search-js]
    
-    > Animación que muestra el componente Search en funcionamiento.
+   > Animación que muestra el componente Search en funcionamiento
 
-    ![Funcionamiento del componente Search](./assets/media/readme/menu/controls/search/gif/working.gif "Funcionamiento del componente Search")
+   ![Funcionamiento del componente Search](./assets/media/readme/menu/controls/search/gif/working.gif "Funcionamiento del componente Search")
    
    
    
