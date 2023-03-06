@@ -210,9 +210,11 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    console.log(Controls.params); // { propA_foo: value, propA_bar: value, propB_baz: value  }
    ```
    
-   Entonces, al momento de la inicialización, todas las interfaces que representan a un *Control* específico ([Search][search-class], [From][from-class], [To][to-class], [Filter][filter-class], [Sort][sort-class]), obtienen de su código HTML los nombres de los parámetros a los cuales representa, los almacena y luego establece sus valores llamando a dos métodos de la clase controladora principal [Controls][controls-class]: `getParamNames` y `setParams`. Luego, solo resta esperar a que haya una actualización en el valor de algún *Control* que obligue a actualizar sus parámetros para que simplemente su interfaz llame a `setParams` y los datos sean actualizados. Cabe remarcar que esta situación se da en dos ocaciones:
+   Entonces, al momento de la inicialización, todas las interfaces que representan a un *Control* específico ([Search][search-class], [From][from-class], [To][to-class], [Filter][filter-class], [Sort][sort-class]), obtienen de su código HTML los nombres de los parámetros a los cuales representa, los almacena y luego establece sus valores (en `Controls.params`) llamando a dos métodos de la clase controladora principal [Controls][controls-class]: `getParamNames` y `setParams`. Así, quedarán disponibles para ser enviados en la URL al momento de realizar una petición a la [base de datos](#base-de-datos-con-la-api-rest-de-my-json-server).
    
-   +  Cuando a través de las acciones del usuario se da un cambio o confirmación que obliga a que los parámetros sean actualizados. Se comunica a su interfaz por medio de los eventos `change` o `update-last-values-confirmed`.
+   Luego, solo resta esperar a que haya una modificación en algún *Control* que obligue a actualizar los valores de sus parámetros para que simplemente su interfaz llame a `setParams` y dicha actualización se realice. Cabe remarcar que esta situación se da en dos ocaciones:
+   
+   +  Cuando a través de las acciones del usuario se produce un cambio o confirmación de cambio. Se comunica a su interfaz por medio de los eventos `change` o `update-last-values-confirmed`.
    
    +  Cuando se fuerza un restablecimiento a los valores por defecto. Se comunica a su interfaz por medio del evento `default-values`.
    
