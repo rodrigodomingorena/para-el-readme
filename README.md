@@ -168,7 +168,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    
    Como mencioné con anterioridad, el documento [menu.html][menu] fue reestructurado de manera tal que el listado de platos presentados al usuario se construye dinámicamente en base a ciertos parámetros. En esta reestructuración hay tres partes fundamentales que trabajan en conjunto para poder llevar a cabo este propósito: la sección [Controls](#controls), la sección [Cards](#cards) y la ya expuesta [base de datos](#base-de-datos-con-la-api-rest-de-my-json-server). Es así que en conjunto, estas secciones del código le permiten al usuario disponer de una variedad de platos ajustados a sus necesidades y gustos, según sea la ocasión.
    
-   A continuación se expondrá el contenido y lógica de funcionamiento de estas secciones para que al momento de explorar el [directorio JavaScript del Menu][index-menu] puedas contar con una guía explicativa y visual que te ayude a comprenderlo mejor.
+   A continuación se expondrá el contenido y lógica de funcionamiento de estas secciones para que al momento de explorar el [directorio JavaScript del Menu][index-menu-dir] puedas contar con una guía explicativa y visual que te ayude a comprenderlo mejor.
    
    #### [Controls][controls-js]
    
@@ -217,6 +217,9 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    +  Cuando a través de las acciones del usuario se produce un cambio o confirmación de cambio. Se comunica a su interfaz por medio de los eventos `change` o `update-last-values-confirmed`.
    
    +  Cuando se fuerza un restablecimiento a los valores por defecto. Se comunica a su interfaz por medio del evento `default-values`.
+
+
+   ##### [Search][search-js]
    
    
    
@@ -257,10 +260,11 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
 [javascript]: ./assets/js
 
-[index-menu]: ./assets/js/index-menu
+[index-menu-dir]: ./assets/js/index-menu
 [index-menu-js]: ./assets/js/index-menu.js
-[controls-js]: ./assets/js/index-menu/menu/controls
+[controls-js]: ./assets/js/index-menu/menu/controls/Controls.js
 [controls-class]: ./assets/js/index-menu/menu/controls/Controls.js#L7
+[search-js]: ./assets/js/index-menu/menu/controls/search/Search.js
 [search-class]: ./assets/js/index-menu/menu/controls/search/Search.js#L4
 [from-class]: ./assets/js/index-menu/menu/controls/option/input/range/from/From.js#L6
 [to-class]: ./assets/js/index-menu/menu/controls/option/input/range/to/To.js#L6
