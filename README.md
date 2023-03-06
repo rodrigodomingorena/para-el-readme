@@ -221,16 +221,9 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
    ##### [Search][search-js]
    
-   ```html
-   <input
-     class="controls__search__input"
-     type="search"
-     name="search"
-     data-params="q"
-     placeholder="Buscar"
-     autocomplete="off"
-   />
-   ```
+    > Animación que muestra el componente Search en funcionamiento.
+
+    ![Funcionamiento del componente Search](./assets/media/readme/menu/controls/search/gif/working.gif "Funcionamiento del componente Search")
    
    
    
