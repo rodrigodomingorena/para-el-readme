@@ -187,7 +187,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
         params
         setParams()
         setURLParams()
-        getParams()
+        getParamNames()
         getParamPrefixes()
     }
 
@@ -197,7 +197,23 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    
    Es decir, en su capa esencial, la lógica de esta sección es establecer en la inicialización los parámetros de búsqueda y sus respectivos valores y luego ir actualizándolos cada vez que algún *Control* dentro de ella sufra un cambio que requiera que dichos valores deban ser actualizados. Posteriormente, estos parámetros y sus valores permanecerán disponibles para ser utilizados en la sección [Cards](#cards) al momento de realizar una solicitud personalizada a la [base de datos][db].
    
-   ##### Inicialización de parámetros
+   ##### Inicialización y actualización de parámetros
+   
+   Para que un *Control* dentro de esta sección funcione correctamente, en su código HTML debe contener obligatoriamente el atributo personalizado `data-params`. Este atributo contendrá uno o más nombres de parámetros de búsqueda separados por un punto y coma (`;`) que serán los parámetros a los cuales ese *Control* representará. Luego, los valores que se les asignen a estos parámetros serán almacenados en la interfaz [Controls][controls-class] y estarán disponibles para ser enviados en la URL al momento de realizar una petición a la [base de datos](#base-de-datos-con-la-api-rest-de-my-json-server).
+   
+   Debido a que estos parámetros pueden llegar a tener algún tipo de prefijo, como por ejemplo un nombre de propiedad al cual dicho parámetro debe ser vinculado para que la *API* realice su trabajo correctamente, opcionalmente su código HTML puede contener el atributo personalizado `data-param-prefixes`. Este debe contener el mismo número de prefijos por cantidad de nombres de parámetros que contenga el atributo `data-params`. Esto es, si `data-params` contiene los parámetros `"_foo;_bar;_baz"`, de contener prefijos, el atributo `data-param-prefixes` debería ser algo como `"propA;propA;propB"`. El orden importa, cada prefijo debe tener la misma ubicación en la lista que el que tiene el nombre de parámetro a ser asociado en la suya; y si hubiese un nombre de prefijo repetido, debe ser duplicado para que al momento de establecer los parámetros todo funcione correctamente. 
+   
+   > Ejemplo de cómo se verían establecidos los parámetros junto a sus prefijos y valores luego de la inicialización
+   ```javascript
+   console.log(Controls.params); // { propA_foo: value, propA_bar: value, propB_baz: value  }
+   ```
+   
+   Entonces, al momento de la inicialización, todas las interfaces que representan a un *Control* específico ([Search][search-class], [From][from-class], [To][to-class], [Filter][filter-class], [Sort][sort-class]), obtienen de su código HTML los nombres de los parámetros a los cuales representa, los almacena y luego establece sus valores llamando a dos métodos de la clase controladora principal [Controls][controls-class]: `getParamNames` y `setParams`. Luego, solo resta esperar a que haya una actualización en el valor de algún *Control* que obligue a actualizar sus parámetros para que simplemente su interfaz llame a `setParams` y los datos sean actualizados. Cabe remarcar que esta situación se da en dos ocaciones:
+   
+   +  Cuando a través de las acciones del usuario se da un cambio o confirmación que obliga a que los parámetros sean actualizados. Se comunica a su interfaz por medio de los eventos `change` o `update-last-values-confirmed`.
+   
+   +  Cuando se fuerza un restablecimiento a los valores por defecto. Se comunica a su interfaz por medio del evento `default-values`.
+   
    
    
    
@@ -240,7 +256,12 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [index-menu]: ./assets/js/index-menu
 [index-menu-js]: ./assets/js/index-menu.js
 [controls-js]: ./assets/js/index-menu/menu/controls
-[controls-class]: ./assets/js/index-menu/menu/controls/Controls.js#LL7C16-L7C16
+[controls-class]: ./assets/js/index-menu/menu/controls/Controls.js#L7
+[search-class]: ./assets/js/index-menu/menu/controls/search/Search.js#L4
+[from-class]: ./assets/js/index-menu/menu/controls/option/input/range/from/From.js#L6
+[to-class]: ./assets/js/index-menu/menu/controls/option/input/range/to/To.js#L6
+[filter-class]: ./assets/js/index-menu/menu/controls/option/list/input/filter/Filter.js#L6
+[sort-class]: ./assets/js/index-menu/menu/controls/option/list/input/sort/Sort.js#L6
 
 [nutritional-info]: ./pages/plate.html#L179
 [nutritional-info-main]: ./pages/plate.html#L182
