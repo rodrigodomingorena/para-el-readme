@@ -227,9 +227,17 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    
    El módulo [Search.js][search-js] es el encargado de manejar todo lo relacionado a este componente. En él se establecen las validaciones necesarias para personalizar su comportamiento a través de JavaScript, tales como limitaciones de tipos de caracteres y espaciados. Esto asegura que el valor enviado posteriormente junto con la URL hacia la *API*, sea un valor correcto que no genere errores ni defectos en la búsqueda por estar construido con caracteres erróneos.
    
-   El parámetro que le permite a estos valores viajar hacia la [base de datos](#base-de-datos-con-la-api-rest-de-my-json-server) para traer platos específicos es el de [*full text search*][json-server-full-text-search]. Esta herramienta que brinda la *API* simplemente busca en todas las propiedades de todos los objetos de datos del [*endpoint `plates`*](#plates) un texto que coincida con este valor. Así, por ejemplo, el usuario puede buscar un ingrediente específico que desea encontrar en los platos del menú y este no necesariamente debe estar en el nombre del plato para ser seleccionado. En su lugar, puede ser parte de la descripción u otra propiedad actual ( tal como `categories`) o futura que sea agregada en siguientes actualizaciones del sitio.
+   El parámetro que le permite a estos valores viajar hacia la [base de datos](#base-de-datos-con-la-api-rest-de-my-json-server) para traer platos específicos es el de [*full text search*][json-server-full-text-search]. Esta herramienta que brinda la *API* simplemente busca en todas las propiedades de todos los objetos de datos del [*endpoint* `plates`](#plates) un texto que coincida con este valor. Así, por ejemplo, el usuario puede buscar un ingrediente específico que desea encontrar en los platos del menú y este no necesariamente debe estar en el nombre del plato para ser seleccionado. En su lugar, puede ser parte de la descripción u otra propiedad actual ( tal como `categories`) o futura que sea agregada en siguientes actualizaciones del sitio.
    
-   Para hacer todo esto posible, este módulo almacena en memoria el último valor introducido por el usuario y lo va actualizando a medida que se van produciendo cambios «definitivos» (a través del evento `change` en vez de `input`) que varíen de aquel último valor almacenado. Una vez actualizado este, se encarga de comunicarle a la sección [Cards](#cards) por medio de un evento personalizado que debe realizar un nuevo renderizado de los platos presentados debido a que los parámetros bajo los cuales se mostraban los anteriores han sido modificados.
+   Para hacer todo esto posible, [Search][search-class] almacena en memoria el último valor introducido por el usuario y lo va actualizando a medida que se van produciendo cambios «definitivos» (a través del evento `change` en vez de `input`) que varíen de aquel último valor almacenado. Una vez actualizado este, se encarga de comunicarle a la sección [Cards](#cards), por medio de un evento personalizado, que debe realizar un nuevo renderizado de los platos presentados debido a que los parámetros bajo los cuales se mostraban los anteriores han sido modificados.
+   
+   ##### [Option][option-js]
+   
+   Como se puede ver en la imagen al inicio de esta [sección](#controls), un *Option* no es más que un contenedor de varios subcomponentes que actúan como filtros independientes y que están agrupados en él.
+   
+   En este primer desarrollo con JavaScript existen dos *Options*: el [option-1][option-1] y el [option-2][option-2]. Ambos le proveen herramientas al usuario para que, además de una búsqueda personalizada a través de texto como le ofrece [Search](#search), pueda ajustar aún más sus preferencias para poder dar con los platos que en verdad le interesan.
+   
+   La clase [OptionControl][option-class] es la encargada de centralizar toda la actividad relacionada a estos contenedores y sus filtros.
    
    
 
@@ -256,6 +264,8 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
 [menu]: ./pages/menu.html
 [controls-section]: ./pages/menu.html#L127
+[option-1]: ./pages/menu.html#L152
+[option-2]: ./pages/menu.html#L287
 [cards-section]: ./pages/menu.html#L415
 
 [plate]: ./pages/plate.html
@@ -274,6 +284,8 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [controls-class]: ./assets/js/index-menu/menu/controls/Controls.js#L7
 [search-js]: ./assets/js/index-menu/menu/controls/search/Search.js
 [search-class]: ./assets/js/index-menu/menu/controls/search/Search.js#L4
+[option-js]: ./assets/js/index-menu/menu/controls/option/Option.js
+[option-class]: ./assets/js/index-menu/menu/controls/option/Option.js#L9
 [from-class]: ./assets/js/index-menu/menu/controls/option/input/range/from/From.js#L6
 [to-class]: ./assets/js/index-menu/menu/controls/option/input/range/to/To.js#L6
 [filter-class]: ./assets/js/index-menu/menu/controls/option/list/input/filter/Filter.js#L6
