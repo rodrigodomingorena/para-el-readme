@@ -250,6 +250,18 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    
    * [Modal][modal-js]
    
+      Esta interfaz se encarga de todo lo relacionado al manejo de la visualización u ocultamiento de un *Option*. Para ello, escucha los eventos necesarios que desencadenarán estos escenarios luego de alguna acción específica del usuario. Si esta lo amerita, delegará su manejo a una de las dos interfaces inicializadas en su interior y destinadas al control de dichos escenarios: [Show][show-class] o [Hide][hide-class].
+      
+      > Animación que muestra la visualización y posterior ocultamiento de un *Option*. Notar que por debajo del *breakpoint large* (992 px) deja de comportarse como un *dropdown* y se convertirse en un *modal* en sí.
+
+      ![Visualizaciíon y ocultamiento de un *Option*](./assets/media/readme/menu/controls/option/modal/gif/behavior.gif "Visualizaciíon y ocultamiento de un *Option*")
+      
+      Las acciones del usuario que desencadenarán la visualización de un *Option* son:
+      
+      *  `click` o `keydown` con `key = Enter` en el botón [`.controls__option__show`][show-button]
+      
+      
+   
    
 
    
@@ -299,6 +311,11 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [option-class]: ./assets/js/index-menu/menu/controls/option/Option.js#L9
 [modal-js]: ./assets/js/index-menu/menu/controls/option/modal/Modal.js
 [modal-class]: ./assets/js/index-menu/menu/controls/option/modal/Modal.js#L7
+[show-js]: ./assets/js/index-menu/menu/controls/option/modal/show/Show.js
+[show-class]: ./assets/js/index-menu/menu/controls/option/modal/show/Show.js#L4
+[show-button]: ./pages/menu.html#L154
+[hide-js]: ./assets/js/index-menu/menu/controls/option/modal/hide/Hide.js
+[hide-class]: ./assets/js/index-menu/menu/controls/option/modal/hide/Hide.js#L4
 [from-class]: ./assets/js/index-menu/menu/controls/option/input/range/from/From.js#L6
 [to-class]: ./assets/js/index-menu/menu/controls/option/input/range/to/To.js#L6
 [filter-class]: ./assets/js/index-menu/menu/controls/option/list/input/filter/Filter.js#L6
