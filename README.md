@@ -235,9 +235,23 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    
    Como se puede ver en la imagen al inicio de esta [sección](#controls), un *Option* no es más que un contenedor de varios subcomponentes que actúan como filtros independientes y que están agrupados en él.
    
-   En este primer desarrollo con JavaScript existen dos *Options*: el [option-1][option-1] y el [option-2][option-2]. Ambos le proveen herramientas al usuario para que, además de una búsqueda personalizada a través de texto como le ofrece [Search](#search), pueda ajustar aún más sus preferencias para poder dar con los platos que en verdad le interesan.
+   En este primer desarrollo con JavaScript existen dos *Options*: el [option-1][option-1] y el [option-2][option-2]. Ambos le proveen herramientas al usuario para que pueda ajustar aún más sus preferencias y así poder dar con los platos que le interesan.
    
-   La clase [OptionControl][option-class] es la encargada de centralizar toda la actividad relacionada a estos contenedores y sus filtros.
+   La clase [OptionControl][option-class] es la encargada de centralizar toda la actividad relacionada a estos contenedores y sus filtros. Desde el manejo de su visualización u ocultamiento, pasando por las interfaces que gestionan cada *Control* particular, hasta la confirmación de cambios que desencadenarán nuevas peticiones y renderizados en la sección [Cards](#cards).
+   
+   ```mermaid
+      classDiagram
+         direction TB
+         OptionControl --> Modal
+         OptionControl --> Input
+         OptionControl --> List
+         OptionControl --> Confirm
+
+         note for Modal "Visualización\ny ocultamiento"
+         note for Input "Filtros de\n nivel superior"
+         note for List "Listas y\n sus filtros"
+         note for Confirm "Confirmación\nde cambios"
+   ```
    
    
 
