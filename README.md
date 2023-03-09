@@ -242,16 +242,13 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    ```mermaid
       classDiagram
          direction TB
-         OptionControl --> Modal
-         OptionControl --> Input
-         OptionControl --> List
-         OptionControl --> Confirm
-
-         note for Modal "Visualización\ny ocultamiento"
-         note for Input "Filtros de\n nivel superior"
-         note for List "Listas y\n sus filtros"
-         note for Confirm "Confirmación\nde cambios"
+         OptionControl --> Modal : contiene
+         OptionControl --> Input : contiene
+         OptionControl --> List : contiene
+         OptionControl --> Confirm : contiene
    ```
+   
+   * [Modal][modal-js]
    
    
 
@@ -300,6 +297,8 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [search-class]: ./assets/js/index-menu/menu/controls/search/Search.js#L4
 [option-js]: ./assets/js/index-menu/menu/controls/option/Option.js
 [option-class]: ./assets/js/index-menu/menu/controls/option/Option.js#L9
+[modal-js]: ./assets/js/index-menu/menu/controls/option/modal/Modal.js
+[modal-class]: ./assets/js/index-menu/menu/controls/option/modal/Modal.js#L7
 [from-class]: ./assets/js/index-menu/menu/controls/option/input/range/from/From.js#L6
 [to-class]: ./assets/js/index-menu/menu/controls/option/input/range/to/To.js#L6
 [filter-class]: ./assets/js/index-menu/menu/controls/option/list/input/filter/Filter.js#L6
