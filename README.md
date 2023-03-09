@@ -252,13 +252,21 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    
       Esta interfaz se encarga de todo lo relacionado al manejo de la visualización u ocultamiento de un *Option*. Para ello, escucha los eventos necesarios que desencadenarán estos escenarios luego de alguna acción específica del usuario. Si esta lo amerita, delegará su manejo a una de las dos interfaces inicializadas en su interior y destinadas al control de dichos escenarios: [Show][show-class] o [Hide][hide-class].
       
-      > Animación que muestra la visualización y posterior ocultamiento de un *Option*. Notar que por debajo del *breakpoint large* (992 px) deja de comportarse como un *dropdown* y se convertirse en un *modal* en sí.
+      > Animación que muestra la visualización y posterior ocultamiento de un *Option*. Notar que por debajo del *breakpoint large* (992 píxeles) deja de comportarse como un *dropdown* y se convertirse en un *modal* en sí.
 
       ![Visualizaciíon y ocultamiento de un *Option*](./assets/media/readme/menu/controls/option/modal/gif/behavior.gif "Visualizaciíon y ocultamiento de un *Option*")
       
       Las acciones del usuario que desencadenarán la visualización de un *Option* son:
       
-      *  `click` o `keydown` con `key = Enter` en el botón [`.controls__option__show`][show-button]
+      *  `click` o `keydown` con `key = Enter` en un botón [`.controls__option__show`][show-button] mientras el *Option* vinculado a ese botón esté oculto.
+      
+      Las acciones del usuario que descadenarán el ocultamiento de un *Option* son:
+      
+      *  `click` o `keydown` con `key = Enter` en un botón [`.controls__option__show`][show-button] mientras haya un *Option* visualizándose.
+      *  `click` en el *modal* (cuando se comporte como tal, por debajo de los 992 píxeles).
+      *  `click` en el botón [`.controls__option__hide`][hide-button].
+      *  `click` en cualquier parte fuera de un *Option* visualizándose.
+      *  `keydown` con `key = Escape` mientras haya un *Option* visualizándose.
       
       
    
@@ -316,6 +324,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [show-button]: ./pages/menu.html#L154
 [hide-js]: ./assets/js/index-menu/menu/controls/option/modal/hide/Hide.js
 [hide-class]: ./assets/js/index-menu/menu/controls/option/modal/hide/Hide.js#L4
+[hide-button]: ./pages/menu.html#L276
 [from-class]: ./assets/js/index-menu/menu/controls/option/input/range/from/From.js#L6
 [to-class]: ./assets/js/index-menu/menu/controls/option/input/range/to/To.js#L6
 [filter-class]: ./assets/js/index-menu/menu/controls/option/list/input/filter/Filter.js#L6
