@@ -276,28 +276,38 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
          classDiagram
             direction LR
             Input --> Range : contiene
-
-            Range --> From : contiene
-            Range --> To : contiene
-
-            Range --|> InputAbstract : hereda
-    
-            From --|> RangeAbstract : hereda
-            To --|> RangeAbstract : hereda
-
-            <<Abstract>> InputAbstract
-            <<Abstract>> RangeAbstract
       ```
       
       *  [Range][range-js]
       
          > Animación que muestra el comportamiento del componente *Range*
 
-         ![Comportamiento del componente *Range*](./assets/media/readme/menu/controls/option/input/range/gif/behavior.gif "Comportamiento del componente *Range*")
+         ![Comportamiento del componente Range](./assets/media/readme/menu/controls/option/input/range/gif/behavior.gif "Comportamiento del componente Range")
          
-         En el desarrollo de esta funcionalidad me encontré con que no existía una forma nativa en HTML de un doble rango. Esto me dio la oportunidad de poder construir una solución alternativa que me ayudó mucho a la hora de ponerme a prueba y desarrollar algo un poco más complejo.
+         En el desarrollo de esta funcionalidad me encontré con que no existía una forma nativa en HTML de construir un doble rango. Esto me dio la oportunidad de poder crear una solución alternativa que me ayudó a ponerme a prueba y desarrollar algo un poco más complejo.
          
-         Aunque no lo hice solo. En realidad me basé en un método que se puede encontrar en este [artículo de *Medium*][medium-range]. En el proceso de investigación descubrí que había varios caminos distintos para llegar al mismo resultado. Al final opté usar como base lo expuesto en dicho artículo ya que era la solución que mejor se adaptaba a las necesidades específicas de este componente.
+         Aunque no lo hice solo. En el proceso de investigación descubrí que había unos cuantos caminos válidos para llegar al mismo resultado. En este caso, me basé en un método que se puede encontrar en este [artículo de *Medium*][medium-range]. Opté usar como base lo expuesto en dicho artículo ya que era la solución que mejor se adaptaba a las necesidades específicas de este componente dentro de lo que es la estructura del proyecto.
+         
+         Su estructura y funcionamiento son relativamente simples. Se trata de dos elementos HTML `<input>` de tipo `range` que son estilizados mediante [CSS][range-sass] de manera tal que visualmente se comportan como un solo rango al que se puede configurar desde sus dos extremos. Luego, a través de JavaScript, mediante los módulos que se pueden encontrar en el directorio [/range][range-dir] (los cuales establecen las interfaces graficadas en el siguiente diagrama), se ajusta su comportamiento para poder tener, finalmente, un doble rango funcional que actúa de la forma prevista para un componente de este tipo.
+         
+         ```mermaid
+            classDiagram
+               direction LR
+               Range --> From : contiene
+               Range --> To : contiene
+
+               Range --|> InputAbstract : hereda
+    
+               From --|> RangeAbstract : hereda
+               To --|> RangeAbstract : hereda
+
+               <<Abstract>> InputAbstract
+               <<Abstract>> RangeAbstract
+         ```
+         
+         Cabe destacar que la clase [Range][range-class] es la encargada de centralizar toda la actividad. Ella hereda de [InputAbstract][input-abs-class], que es, como su nombre lo indica, una interfaz abstracta que sirve como base a todos los *Inputs* que se encuentren dentro de un *Option*, esto es, ya sea en el nivel superior o en otro nivel dentro de este. 
+         
+         [Range][range-class], a su vez, contiene las interfaces [From][from-class] y [To][to-class] que representan a cada uno de los dos rangos que verdaderamente existen en la estructura. [From][from-class] maneja el control izquierdo, mientras que [To][to-class] se encarga de manejar el control derecho. Finalmente, estas dos interfaces heredan de [RangeAbstract][range-abs-class] que es, al igual que [InputAbstract][input-abs-class], una interfaz abstracta que sirve como base a todos los rangos ([From][from-class], [To][to-class] y cualquier otro que pudiese ser incorporado en el futuro). 
       
    
    
@@ -358,8 +368,12 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [hide-button]: ./pages/menu.html#L276
 [input-js]: ./assets/js/index-menu/menu/controls/option/input/Input.js
 [input-class]: ./assets/js/index-menu/menu/controls/option/input/Input.js#L6
+[input-abs-class]: ./assets/js/index-menu/menu/controls/option/input/abstract/Input-Abstract.js#L4
+[range-dir]: ./assets/js/index-menu/menu/controls/option/input/range/
 [range-js]: ./assets/js/index-menu/menu/controls/option/input/range/Range.js
 [range-class]: ./assets/js/index-menu/menu/controls/option/input/range/Range.js#L14
+[range-sass]: ./assets/style/scss/components/control/_controls.scss#L352
+[range-abs-class]: ./assets/js/index-menu/menu/controls/option/input/range/abstract/Range-Abstract.js#L4
 [from-class]: ./assets/js/index-menu/menu/controls/option/input/range/from/From.js#L6
 [to-class]: ./assets/js/index-menu/menu/controls/option/input/range/to/To.js#L6
 [filter-class]: ./assets/js/index-menu/menu/controls/option/list/input/filter/Filter.js#L6
