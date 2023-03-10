@@ -256,14 +256,14 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
       ![Visualizaciíon y ocultamiento de un *Option*](./assets/media/readme/menu/controls/option/modal/gif/behavior.gif "Visualizaciíon y ocultamiento de un *Option*")
       
-      Las acciones del usuario que desencadenarán la visualización de un *Option*:
+      Las acciones del usuario que desencadenarán la visualización de un *Option* son:
       
       *  `click` o `keydown` con `key = Enter` en un botón [*show*][show-button], mientras el *Option* vinculado a ese botón esté oculto.
       
       Las acciones del usuario que descadenarán el ocultamiento de un *Option* son:     
       
       *  `click` en un botón [*hide*][hide-button].
-      *  `click` en un *modal* (cuando se comporte como tal, por debajo de los 992 píxeles).
+      *  `click` en un [*modal*][modal-container] (cuando se comporte como tal, por debajo de los 992 píxeles).
       *  `click` en cualquier parte fuera de un *Option* visualizándose.
       *  `click` o `keydown` con `key = Enter` en un botón [*show*][show-button], mientras haya un *Option* visualizándose.
       *  `keydown` con `key = Escape`, mientras haya un *Option* visualizándose.
@@ -319,6 +319,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [option-class]: ./assets/js/index-menu/menu/controls/option/Option.js#L9
 [modal-js]: ./assets/js/index-menu/menu/controls/option/modal/Modal.js
 [modal-class]: ./assets/js/index-menu/menu/controls/option/modal/Modal.js#L7
+[modal-container]: ./pages/menu.html#L164
 [show-js]: ./assets/js/index-menu/menu/controls/option/modal/show/Show.js
 [show-class]: ./assets/js/index-menu/menu/controls/option/modal/show/Show.js#L4
 [show-button]: ./pages/menu.html#L154
