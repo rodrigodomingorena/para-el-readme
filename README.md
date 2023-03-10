@@ -235,7 +235,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    
    Como se puede ver en la imagen al inicio de esta [sección](#controls), un *Option* no es más que un contenedor de varios subcomponentes que actúan como filtros independientes y que están agrupados en él.
    
-   En este primer desarrollo con JavaScript existen dos *Options*: el [option-1][option-1] y el [option-2][option-2]. Ambos le proveen herramientas al usuario para que pueda ajustar aún más sus preferencias y así poder dar con los platos que le interesan.
+   En este primer desarrollo con JavaScript existen dos *Options*: el [*option-1*][option-1] y el [*option-2*][option-2]. Ambos le proveen herramientas al usuario para que pueda ajustar aún más sus preferencias y así poder dar con los platos que le interesan.
    
    La clase [OptionControl][option-class] es la encargada de centralizar toda la actividad relacionada a estos contenedores y sus filtros. Desde el manejo de su visualización u ocultamiento, pasando por las interfaces que gestionan cada *Control* particular, hasta la confirmación de cambios que desencadenarán nuevas peticiones y renderizados en la sección [Cards](#cards).
    
@@ -264,10 +264,32 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
       
       *  `click` en un botón [*hide*][hide-button].
       *  `click` en un [*modal*][modal-container] (cuando se comporte como tal, por debajo de los 992 píxeles).
-      *  `click` en cualquier parte fuera de un *Option* visualizándose.
+      *  `click` en cualquier parte fuera de un *Option* visualizándose (cuando se comporte como un *dropdown*, por encima de los 992 píxeles).
       *  `click` o `keydown` con `key = Enter` en un botón [*show*][show-button], mientras haya un *Option* visualizándose.
       *  `keydown` con `key = Escape`, mientras haya un *Option* visualizándose.
       
+   * [Input][input-js]
+      
+      Esta interfaz está destinada a centralizar el manejo de todos los filtros que se encuentren en el nivel superior de un *Option*. Como se puede ver en el siguiente diagrama, en este primer desarrollo con JavaScript se encuentra disponible un solo filtro de nivel superior: el [Range][range-js] del [*option-1*][option-1].
+      
+      ```mermaid
+         classDiagram
+            direction LR
+            Input --> Range : contiene
+
+            Range --> From : contiene
+            Range --> To : contiene
+
+            Range --|> InputAbstract : hereda
+    
+            From --|> RangeAbstract : hereda
+            To --|> RangeAbstract : hereda
+
+            <<Abstract>> InputAbstract
+            <<Abstract>> RangeAbstract
+      ```
+      
+      *  [Range][range-js]
       
    
    
@@ -326,6 +348,10 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [hide-js]: ./assets/js/index-menu/menu/controls/option/modal/hide/Hide.js
 [hide-class]: ./assets/js/index-menu/menu/controls/option/modal/hide/Hide.js#L4
 [hide-button]: ./pages/menu.html#L276
+[input-js]: ./assets/js/index-menu/menu/controls/option/input/Input.js
+[input-class]: ./assets/js/index-menu/menu/controls/option/input/Input.js#L6
+[range-js]: ./assets/js/index-menu/menu/controls/option/input/range/Range.js
+[range-class]: ./assets/js/index-menu/menu/controls/option/input/range/Range.js#L14
 [from-class]: ./assets/js/index-menu/menu/controls/option/input/range/from/From.js#L6
 [to-class]: ./assets/js/index-menu/menu/controls/option/input/range/to/To.js#L6
 [filter-class]: ./assets/js/index-menu/menu/controls/option/list/input/filter/Filter.js#L6
