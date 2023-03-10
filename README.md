@@ -291,6 +291,14 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
       
       *  [Range][range-js]
       
+         > Animación que muestra el comportamiento del componente *Range*
+
+         ![Comportamiento del componente *Range*](./assets/media/readme/menu/controls/option/input/range/gif/behavior.gif "Comportamiento del componente *Range*")
+         
+         En el desarrollo de esta funcionalidad me encontré con que no existía una forma nativa en HTML de un doble rango. Esto me dio la oportunidad de poder construir una solución alternativa que me ayudó mucho a la hora de ponerme a prueba y desarrollar algo un poco más complejo.
+         
+         Aunque no lo hice solo. En realidad me basé en un método que se puede encontrar en este [artículo de *Medium*][medium-range]. En el proceso de investigación descubrí que había varios caminos distintos para llegar al mismo resultado. Al final opté usar como base lo expuesto en dicho artículo ya que era la solución que mejor se adaptaba a las necesidades específicas de este componente.
+      
    
    
 
@@ -382,6 +390,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [react]: https://beta.reactjs.org/
 [bem]: https://github.com/rodrigodomingorena/mi-primer-sitio#metodolog%C3%ADa-bem
 [spa]: https://developer.mozilla.org/en-US/docs/Glossary/SPA
+[medium-range]: https://medium.com/@predragdavidovic10/native-dual-range-slider-html-css-javascript-91e778134816
 
 [get]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET
 [post]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST
