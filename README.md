@@ -288,7 +288,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
          
          Aunque no lo hice solo. En el proceso de investigación descubrí que había unos cuantos caminos válidos para llegar al mismo resultado. En este caso, me basé en un método que se puede encontrar en este [artículo de *Medium*][medium-range]. Opté usar como base lo expuesto en dicho artículo ya que era la solución que mejor se adaptaba a las necesidades específicas de este componente dentro de lo que es la estructura del proyecto.
          
-         Su estructura y funcionamiento son relativamente simples. Se trata de dos elementos HTML `<input>` de tipo `range` que son estilizados mediante [CSS][range-sass] de manera tal que visualmente se comportan como un solo rango al que se puede configurar desde sus dos extremos. Luego, a través de JavaScript, mediante los módulos que se pueden encontrar en el directorio [/range][range-dir] (los cuales establecen las interfaces graficadas en el siguiente diagrama), se ajusta su comportamiento para poder tener, finalmente, un doble rango funcional que actúa de la forma prevista para un componente de este tipo.
+         Su estructura y funcionamiento son relativamente simples. Se trata de dos elementos HTML `<input>` de tipo `range` que son estilizados mediante [CSS][range-sass] de manera tal que visualmente se comportan como un solo rango al que se puede configurar desde sus dos extremos. Luego, a través de JavaScript, mediante los módulos que se pueden encontrar en el directorio [/range][range-dir], se ajusta su comportamiento para poder tener un doble rango funcional que actúa de la forma prevista para un componente de este tipo.
          
          ```mermaid
             classDiagram
@@ -305,9 +305,9 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
                <<Abstract>> RangeAbstract
          ```
          
-         Cabe destacar que la clase [Range][range-class] es la encargada de centralizar toda la actividad. Ella hereda de [InputAbstract][input-abs-class], que es, como su nombre lo indica, una interfaz abstracta que sirve como base a todos los *Inputs* que se encuentren dentro de un *Option*, esto es, ya sea en el nivel superior o en otro nivel dentro de este. 
+         Cabe destacar que la clase [Range][range-class] es la encargada de centralizar toda la actividad. Ella hereda de [InputAbstract][input-abs-class], que es, como su nombre lo indica, una interfaz abstracta que sirve como base para todos los *Inputs* que se encuentren dentro de un *Option*. Esto es, ya sea en el nivel superior o en otro nivel dentro de este. 
          
-         [Range][range-class], a su vez, contiene las interfaces [From][from-class] y [To][to-class] que representan a cada uno de los dos rangos que verdaderamente existen en la estructura. [From][from-class] maneja el control izquierdo, mientras que [To][to-class] se encarga de manejar el control derecho. Finalmente, estas dos interfaces heredan de [RangeAbstract][range-abs-class] que es, al igual que [InputAbstract][input-abs-class], una interfaz abstracta que sirve como base a todos los rangos ([From][from-class], [To][to-class] y cualquier otro que pudiese ser incorporado en el futuro). 
+         [Range][range-class], a su vez, contiene las interfaces [From][from-class] y [To][to-class] que representan a cada uno de los dos rangos que verdaderamente existen en la estructura. [From][from-class] maneja el control izquierdo, mientras que [To][to-class] se encarga de manejar el control derecho. Finalmente, estas dos interfaces heredan de [RangeAbstract][range-abs-class], la cual es, al igual que [InputAbstract][input-abs-class], una interfaz abstracta que sirve como base para todos los rangos ([From][from-class], [To][to-class] y cualquier otro que pudiese ser incorporado en el futuro). 
       
    
    
