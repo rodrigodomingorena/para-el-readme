@@ -318,9 +318,15 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
          
    * [List][list-js]
       
-      Esta interfaz se encarga de todo lo relacionado al manejo de las listas que se encuentren dentro de un *Option*, desde sus etiquetas e ítems hasta los filtros que se hallen en el interior de estos.
+      Esta interfaz se encarga de todo lo relacionado al manejo de las listas que se encuentran dentro de un *Option*, desde sus etiquetas e ítems hasta los filtros que se hallen en el interior de estos.
       
-      Para ello, inicializa las interfaces [Label][label-class], [Item][item-class] e [InputList][input-list-class]. Las dos primeras son muy simples. Ofrecen funcionalidades y características que permitern manejar en otras partes del código, de forma rápida y optimizada, ciertas situaciones de interacción que involucran tanto a las etiquetas como a los ítems de las listas. 
+      Para ello, inicializa las interfaces [Label][label-class], [Item][item-class] e [InputList][input-list-class]. Las dos primeras son muy simples. Ofrecen funcionalidades y características que permitern manejar en otras partes del código ciertas situaciones de interacción que involucran tanto a las etiquetas como a los ítems. En cuanto a la tercera, merece un desarrollo aparte ya que cumple una función central en el manejo de los filtros que se encuentran en las listas.
+      
+      * [InputList][input-list-js]
+      
+         Esta interfaz cumple exactamente el mismo rol que la interfaz [Input][input-js] descripta con anterioridad. La diferencia es que mientras esta última está destinada a centralizar el manejo de todos los filtros que se encuentren en el nivel superior de un *Option*, [InputList][input-list-class] lo está para los filtros que se encuentren en el nivel interior de las listas presentes en un *Option*.
+      
+      
 
    
       
@@ -390,6 +396,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [list-class]: ./assets/js/index-menu/menu/controls/option/list/List.js#L8
 [label-class]: ./assets/js/index-menu/menu/controls/option/list/label/Label.js#L4
 [item-class]: ./assets/js/index-menu/menu/controls/option/list/item/Item.js#L4
+[input-list-js]: ./assets/js/index-menu/menu/controls/option/list/input/Input-List.js
 [input-list-class]: ./assets/js/index-menu/menu/controls/option/list/input/Input-List.js#L7
 [filter-class]: ./assets/js/index-menu/menu/controls/option/list/input/filter/Filter.js#L6
 [sort-class]: ./assets/js/index-menu/menu/controls/option/list/input/sort/Sort.js#L6
