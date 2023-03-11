@@ -227,7 +227,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
    
    El módulo [Search.js][search-js] es el encargado de manejar todo lo relacionado a este componente. En él se establecen las validaciones necesarias para personalizar su comportamiento a través de JavaScript, tales como limitaciones de tipos de caracteres y espaciados. Esto asegura que el valor enviado posteriormente junto con la URL hacia la *API*, sea un valor correcto que no genere errores ni defectos en la búsqueda por estar construido con caracteres erróneos.
    
-   El parámetro que le permite a estos valores viajar hacia la [base de datos](#base-de-datos-con-la-api-rest-de-my-json-server) para traer platos específicos es el de [*full text search*][json-server-full-text-search]. Esta herramienta que brinda la *API* simplemente busca en todas las propiedades de todos los objetos de datos del [*endpoint* `plates`](#plates) un texto que coincida con este valor. Así, por ejemplo, el usuario puede buscar un ingrediente específico que desea encontrar en los platos del menú y este no necesariamente debe estar en el nombre del plato para ser seleccionado. En su lugar, puede ser parte de la descripción u otra propiedad actual ( tal como `categories`) o futura que sea agregada en siguientes actualizaciones del sitio.
+   El parámetro que le permite a estos valores viajar hacia la [base de datos](#base-de-datos-con-la-api-rest-de-my-json-server) para traer platos específicos es el de [*full text search*][json-server-full-text-search]. Esta herramienta que brinda la *API* simplemente busca en todas las propiedades de todos los objetos de datos del [*endpoint* `plates`](#plates) un texto que coincida con este valor. Así, por ejemplo, el usuario puede buscar un ingrediente específico que desea encontrar en los platos del menú y este no necesariamente debe estar en el nombre del plato para ser seleccionado. En su lugar, puede ser parte de la descripción u otra propiedad actual (tal como `categories`) o futura que sea agregada en siguientes actualizaciones del sitio.
    
    Para hacer todo esto posible, [Search][search-class] almacena en memoria el último valor introducido por el usuario y lo va actualizando a medida que se van produciendo cambios «definitivos» (a través del evento `change` en vez de `input`) que varíen de aquel último valor almacenado. Una vez actualizado este, se encarga de comunicarle a la sección [Cards](#cards), por medio de un evento personalizado, que debe realizar un nuevo renderizado de los platos presentados debido a que los parámetros bajo los cuales se mostraban los anteriores han sido modificados.
    
@@ -305,12 +305,22 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
                <<Abstract>> RangeAbstract
          ```
          
-         Cabe destacar que la clase [Range][range-class] es la encargada de centralizar toda la actividad. Ella hereda de [InputAbstract][input-abs-class], que es, como su nombre lo indica, una interfaz abstracta que sirve como base para todos los *Inputs* que se encuentren dentro de un *Option*. Esto es, ya sea en el nivel superior o en otro nivel dentro de este. 
+         La clase [Range][range-class] es la encargada de centralizar toda la actividad. Hereda de [InputAbstract][input-abs-class], que es, como su nombre lo indica, una interfaz abstracta que sirve como base para todos los *Inputs* que se encuentren dentro de un *Option*. Esto es, ya sea en el nivel superior o en otro nivel dentro de este. 
          
-         [Range][range-class], a su vez, contiene las interfaces [From][from-class] y [To][to-class] que representan a cada uno de los dos rangos que verdaderamente existen en la estructura. [From][from-class] maneja el control izquierdo, mientras que [To][to-class] se encarga de manejar el control derecho. Finalmente, estas dos interfaces heredan de [RangeAbstract][range-abs-class], la cual es, al igual que [InputAbstract][input-abs-class], una interfaz abstracta que sirve como base para todos los rangos ([From][from-class], [To][to-class] y cualquier otro que pudiese ser incorporado en el futuro). 
+         Esta, a su vez, contiene las interfaces [From][from-class] y [To][to-class] que representan a cada uno de los dos rangos que existen en la estructura. [From][from-class] maneja el control izquierdo, mientras que [To][to-class] se encarga de manejar el control derecho. Estas dos interfaces heredan de [RangeAbstract][range-abs-class], la cual es, al igual que [InputAbstract][input-abs-class], una interfaz abstracta que sirve como base para todos los rangos ([From][from-class], [To][to-class] y cualquier otro que pudiese ser incorporado en el futuro). 
       
-   
-   
+         Por último, los parámetros que le permiten a los valores de cada control del rango viajar hacia la [base de datos](#base-de-datos-con-la-api-rest-de-my-json-server) para traer platos específicos son los [operadores de rango][json-server-operators]. Esta herramienta que brinda la *API* nos da la posibilidad de establecer dos tipos de parámetros:
+         
+         * `_gte`: *greater than or equal* (mayor o igual que). Contendrá el valor del control izquierdo manejado por [From][from-class].
+         * `_lte`: *less than or equal* (menor o igual que). Contendrá el valor del control derecho manejado por [To][to-class].
+
+         Además, para que la *API* sepa qué propiedad debe someter al filtro de estos rangos, se debe colocar como prefijo su nombre. En este caso, la propiedad `price` del [*endpoint* `plates`](#plates) es la que será puesta a prueba para saber si un plato específico supera o no el filtro. Por lo tanto, los parámetros finales que se envían a la [base de datos](#base-de-datos-con-la-api-rest-de-my-json-server) con sus respectivos valores son: `price_gte` y `price_lte`.
+         
+   * [List][list-js]
+      
+      Esta interfaz se encarga de todo lo relacionado al manejo de las listas que se encuentren dentro de un *Option*, desde sus etiquetas e ítems hasta los filtros que se hallen en el interior de estos.
+      
+      Para ello, inicializa las interfaces [Label][label-class], [Item][item-class] e [InputList][input-list-class]. Las dos primeras son muy simples. Ofrecen funcionalidades y características que permitern manejar en otras partes del código, de forma rápida y optimizada, ciertas situaciones de interacción que involucran tanto a las etiquetas como a los ítems de las listas. 
 
    
       
@@ -376,6 +386,11 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [range-abs-class]: ./assets/js/index-menu/menu/controls/option/input/range/abstract/Range-Abstract.js#L4
 [from-class]: ./assets/js/index-menu/menu/controls/option/input/range/from/From.js#L6
 [to-class]: ./assets/js/index-menu/menu/controls/option/input/range/to/To.js#L6
+[list-js]: ./assets/js/index-menu/menu/controls/option/list/List.js
+[list-class]: ./assets/js/index-menu/menu/controls/option/list/List.js#L8
+[label-class]: ./assets/js/index-menu/menu/controls/option/list/label/Label.js#L4
+[item-class]: ./assets/js/index-menu/menu/controls/option/list/item/Item.js#L4
+[input-list-class]: ./assets/js/index-menu/menu/controls/option/list/input/Input-List.js#L7
 [filter-class]: ./assets/js/index-menu/menu/controls/option/list/input/filter/Filter.js#L6
 [sort-class]: ./assets/js/index-menu/menu/controls/option/list/input/sort/Sort.js#L6
 
