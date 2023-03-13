@@ -221,9 +221,9 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
    ##### [Search][search-js]
    
-   > Animación que muestra al componente Search en funcionamiento
+   > Animación que muestra el comportamiento del componente *Search*
 
-   ![Funcionamiento del componente Search](./assets/media/readme/menu/controls/search/gif/working.gif "Funcionamiento del componente Search")
+   ![Comportamiento del componente Search](./assets/media/readme/menu/controls/search/gif/behavior.gif "Comportamiento del componente Search")
    
    El módulo [Search.js][search-js] es el encargado de manejar todo lo relacionado a este componente. En él se establecen las validaciones necesarias para personalizar su comportamiento a través de JavaScript, tales como limitaciones de tipos de caracteres y espaciados. Esto asegura que el valor enviado posteriormente junto con la URL hacia la *API*, sea un valor correcto que no genere errores ni defectos en la búsqueda por estar construido con caracteres erróneos.
    
@@ -324,7 +324,22 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
       
       * [InputList][input-list-js]
       
-         Esta interfaz cumple exactamente el mismo rol que la interfaz [Input][input-js] descripta con anterioridad. La diferencia es que mientras esta última está destinada a centralizar el manejo de todos los filtros que se encuentren en el nivel superior de un *Option*, [InputList][input-list-class] lo está para los filtros que se encuentren en el nivel interior de las listas presentes en un *Option*.
+         Esta interfaz cumple exactamente el mismo rol que la interfaz [Input][input-js] descripta con anterioridad. La diferencia es que mientras esta última está destinada a centralizar el manejo de todos los filtros que se encuentren en el nivel superior, [InputList][input-list-class] lo está para los filtros que se encuentren en el nivel interior de las listas presentes en un *Option*.
+         
+         Como se puede ver en el siguiente diagrama, en este primer desarrollo con JavaScript se encuentran disponibles dos filtros a nivel de lista: el [Filter][filter-js] y el [Sort][sort-js].
+      
+      ```mermaid
+         classDiagram
+            direction LR
+            InputList --> Filter : contiene
+            InputList --> Sort : contiene
+      ```
+      
+      *  [Filter][filter-js]
+      
+         > Animación que muestra el comportamiento del componente *Filter*
+
+         ![Comportamiento del componente Filter](./assets/media/readme/menu/controls/option/input-list/filter/gif/behavior.gif "Comportamiento del componente Filter")
       
       
 
@@ -398,7 +413,9 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [item-class]: ./assets/js/index-menu/menu/controls/option/list/item/Item.js#L4
 [input-list-js]: ./assets/js/index-menu/menu/controls/option/list/input/Input-List.js
 [input-list-class]: ./assets/js/index-menu/menu/controls/option/list/input/Input-List.js#L7
+[filter-js]: ./assets/js/index-menu/menu/controls/option/list/input/filter/Filter.js
 [filter-class]: ./assets/js/index-menu/menu/controls/option/list/input/filter/Filter.js#L6
+[sort-js]: ./assets/js/index-menu/menu/controls/option/list/input/sort/Sort.js
 [sort-class]: ./assets/js/index-menu/menu/controls/option/list/input/sort/Sort.js#L6
 
 [nutritional-info]: ./pages/plate.html#L179
