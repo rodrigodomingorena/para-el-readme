@@ -345,7 +345,9 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
          ![Comportamiento del componente Sort](./assets/media/readme/menu/controls/option/input-list/sort/gif/behavior.gif "Comportamiento del componente Sort")
          
-         La estructura y funcionamiento de estos filtros son simples. Se trata de elementos HTML `<input>` de tipo `checkbox` y `radio` respectivamente, ubicados dentro de los ítems de una lista con sus etiquetas asociadas. A través de JavaScript, mediante los módulos [Filter.js][filter-js] y [Sort.js], se controlan sus comportamientos de manera tal que los valores seleccionados por el usuario se mantienen almacenados en memoria y son actualizados a medida que se van dando cambios «parciales» (antes de una *confirmación*) o «definitivos» (con una *confirmación*).
+         La estructura y funcionamiento de estos filtros son simples. Se trata de elementos HTML `<input>` de tipo `checkbox` y `radio` respectivamente, ubicados dentro de los ítems de una lista con sus etiquetas asociadas.
+         
+         A través de JavaScript, mediante los módulos [Filter.js][filter-js] y [Sort.js][sort-js], se controlan sus comportamientos de manera tal que los valores seleccionados por el usuario se mantienen almacenados en memoria y son actualizados a medida que se van dando cambios «parciales» (antes de una *confirmación*) o «definitivos» (con una *confirmación*).
          
          Además de este almacenamiento y actualización constante, dichos módulos se encargan de manejar ciertos eventos originados por algunas interacciones del usuario que requieran forzar ciertos valores para que su experiencia sea la más óptima posible.
          
@@ -353,11 +355,18 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
             classDiagram
                direction LR
                Filter --|> InputListAbstract : hereda
+               Sort --|> InputListAbstract : hereda
                InputListAbstract --|> InputAbstract : hereda
 
                <<Abstract>> InputListAbstract
                <<Abstract>> InputAbstract
          ```
+         
+          Como se puede ver en el diagrama de arriba, las clases [Filter][filter-class] y [Sort][sort-class] heredan de [InputListAbstract][input-list-abs-class], que es una interfaz abstracta que sirve como base para todos los *Inputs* que se encuentren dentro de una *List*. A su vez, [InputListAbstract][input-list-abs-class] hereda de [InputAbstract][input-abs-class], que es, como mencioné con anterioridad, una interfaz abstracta que sirve como base para todos los *Inputs* que se encuentren dentro de un *Option*, ya sea en el nivel superior o en otro nivel dentro de este (como en este caso, en una lista).
+                    
+         Por último, los parámetros que le permiten a los valores seleccionados de cada filtro viajar hacia la [base de datos](#base-de-datos-con-la-api-rest-de-my-json-server) para traer platos específicos son los siguientes: 
+         
+         *  Filter: [operadores de filtro][json-server-operators]. Esta herramienta que brinda la *API* nos da la posibilidad de establecer un tipo de parámetro denominado `_like`, el cual busca en una propiedad específica * los valores que le sean suministrados. Para este propósito, soporta expresiones regulares. De este modo, los valores de todos los filtros seleccionados por el usuario son pasados a este parámetro en formato de [alternancia][js-info-alternation].
          
       
       
@@ -432,6 +441,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 [item-class]: ./assets/js/index-menu/menu/controls/option/list/item/Item.js#L4
 [input-list-js]: ./assets/js/index-menu/menu/controls/option/list/input/Input-List.js
 [input-list-class]: ./assets/js/index-menu/menu/controls/option/list/input/Input-List.js#L7
+[input-list-abs-class]: ./assets/js/index-menu/menu/controls/option/list/input/abstract/Input-List-Abstract.js#L6  
 [filter-js]: ./assets/js/index-menu/menu/controls/option/list/input/filter/Filter.js
 [filter-class]: ./assets/js/index-menu/menu/controls/option/list/input/filter/Filter.js#L6
 [sort-js]: ./assets/js/index-menu/menu/controls/option/list/input/sort/Sort.js
@@ -458,6 +468,7 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
 
 
 [js-info]: https://es.javascript.info/
+[js-info-alternation]: https://es.javascript.info/regexp-alternation
 [mdn]: https://developer.mozilla.org/en-US/
 [react]: https://beta.reactjs.org/
 [bem]: https://github.com/rodrigodomingorena/mi-primer-sitio#metodolog%C3%ADa-bem
