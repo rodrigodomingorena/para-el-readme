@@ -335,15 +335,19 @@ A modo de ejemplo, a continuación menciono un caso de refactorización que nece
             InputList --> Sort : contiene
       ```
       
-      *  [Filter][filter-js]
+      *  [Filter][filter-js] y [Sort][sort-js]
       
          > Animación que muestra el comportamiento del componente *Filter*
 
          ![Comportamiento del componente Filter](./assets/media/readme/menu/controls/option/input-list/filter/gif/behavior.gif "Comportamiento del componente Filter")
          
-         Su estructura y funcionamiento son simples. Se trata de elementos HTML `<input>` de tipo `checkbox` ubicados dentro de los ítems de una lista con sus respectivas etiquetas. A través de JavaScript, mediante el módulo [Filter.js][filter-js], se controla su funcionamiento de manera tal que los valores seleccionados por el usuario se mantienen almacenados en memoria y son actualizados a medida que se van dando cambios «parciales» (antes de una *confirmación*) o «definitivos» (con una *confirmación*).
+         > Animación que muestra el comportamiento del componente *Sort*
+
+         ![Comportamiento del componente Sort](./assets/media/readme/menu/controls/option/input-list/sort/gif/behavior.gif "Comportamiento del componente Sort")
          
-         Además de este almacenamiento y actualización constante, dicho módulo se encarga de manejar ciertos eventos originados por algunas interacciones del usuario que requieran forzar ciertos valores para que su experiencia sea la más óptima posible.
+         La estructura y funcionamiento de estos filtros son simples. Se trata de elementos HTML `<input>` de tipo `checkbox` y `radio` respectivamente, ubicados dentro de los ítems de una lista con sus etiquetas asociadas. A través de JavaScript, mediante los módulos [Filter.js][filter-js] y [Sort.js], se controlan sus comportamientos de manera tal que los valores seleccionados por el usuario se mantienen almacenados en memoria y son actualizados a medida que se van dando cambios «parciales» (antes de una *confirmación*) o «definitivos» (con una *confirmación*).
+         
+         Además de este almacenamiento y actualización constante, dichos módulos se encargan de manejar ciertos eventos originados por algunas interacciones del usuario que requieran forzar ciertos valores para que su experiencia sea la más óptima posible.
          
          ```mermaid
             classDiagram
